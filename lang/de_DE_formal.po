@@ -1,0 +1,1447 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: b4st\n"
+"POT-Creation-Date: 2018-07-27 12:09+0200\n"
+"PO-Revision-Date: 2018-07-27 12:09+0200\n"
+"Last-Translator: Nico Hauser <me@tyratox.ch>\n"
+"Language-Team: \n"
+"Language: de_CH\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: bower_components\n"
+"X-Poedit-SearchPathExcluded-1: lang\n"
+"X-Poedit-SearchPathExcluded-2: js\n"
+"X-Poedit-SearchPathExcluded-3: scss\n"
+"X-Poedit-SearchPathExcluded-4: css\n"
+"X-Poedit-SearchPathExcluded-5: img\n"
+"X-Poedit-SearchPathExcluded-6: fonts\n"
+
+#: 404.php:7
+msgid "Error"
+msgstr "Fehler"
+
+#: 404.php:12
+msgid "Sorry, the page you were looking for wasn't found."
+msgstr ""
+"Tut uns leid, die Seite die Sie versuchten aufzurufen, wurde nicht gefunden."
+
+#: 404.php:14
+#, php-format
+msgid ""
+"If you want to find something specific, try the search function below or if "
+"you simply want to return to the main page, <a href=\"%s\">click here</a>."
+msgstr ""
+"Falls Sie etwas spezifisches finden wollen, können Sie die Suchfunktion "
+"unten verwenden oder falls Sie einfach nur zur Startseite zurück möchten, "
+"können Sie <a href=\"%s\">hier klicken</a>."
+
+#: 404.php:16 footer.php:71 functions.php:1787 functions.php:1806
+msgid "Search"
+msgstr "Suche"
+
+#: 404.php:19
+#, php-format
+msgid ""
+"Should you feel like this is an error, do not hesitate to <a href=\"%s"
+"\">contact</a> us."
+msgstr ""
+"Sollten Sie das Gefühl haben, dass dies ein Fehler ist, <a href=\"%s"
+"\">kontaktieren</a> Sie uns eifach."
+
+#: footer.php:73
+#, php-format
+msgid ""
+"This is a quick text-based search, if you need <a href='%s'>advanced filter "
+"options, click here</a>."
+msgstr ""
+"Dies ist eine schnelle textbasierende Suche. Sollten Sie <a "
+"href='%s'>erweiterte Filtermöglichkeiten benötigten, klicken Sie hier</a>."
+
+#: functions.php:279
+msgctxt "Post Type General Name"
+msgid "Messages"
+msgstr "Nachrichten"
+
+#: functions.php:280
+msgctxt "Post Type Singular Name"
+msgid "Message"
+msgstr "Nachricht"
+
+#: functions.php:281 functions.php:283
+msgid "Messages"
+msgstr "Nachrichten"
+
+#: functions.php:282 functions.php:306 functions.php:687
+msgid "Message"
+msgstr "Nachricht"
+
+#: functions.php:284
+msgid "Parent Message:"
+msgstr "Übergeordnete Nachricht:"
+
+#: functions.php:285
+msgid "All Messages"
+msgstr "Alle Nachrichten"
+
+#: functions.php:286
+msgid "Add New Message"
+msgstr "Füge eine neue Nachricht hinzu"
+
+#: functions.php:287
+msgid "Add New"
+msgstr "Neu"
+
+#: functions.php:288
+msgid "New Message"
+msgstr "Neue Nachricht"
+
+#: functions.php:289
+msgid "Edit Message"
+msgstr "Nachricht bearbeiten"
+
+#: functions.php:290
+msgid "Update Message"
+msgstr "Nachricht aktualisieren"
+
+#: functions.php:291
+msgid "View Message"
+msgstr "Betrachte die Nachricht"
+
+#: functions.php:292
+msgid "Search Message"
+msgstr "Nachricht suchen"
+
+#: functions.php:293
+msgid "Not found"
+msgstr "Nicht gefunden"
+
+#: functions.php:294
+msgid "Not found in Trash"
+msgstr "Es wurde nichts im Papierkorb gefunden"
+
+#: functions.php:295
+msgid "Featured Image"
+msgstr "Beitragsbild"
+
+#: functions.php:296
+msgid "Set featured image"
+msgstr "Beitragsbild festlegen"
+
+#: functions.php:297
+msgid "Remove featured image"
+msgstr "Beitragsbild entfernen"
+
+#: functions.php:298
+msgid "Use as featured image"
+msgstr "Als Beitragsbild festlegen"
+
+#: functions.php:299
+msgid "Insert into message"
+msgstr "In die Nachricht einfügen"
+
+#: functions.php:300
+msgid "Uploaded to this message"
+msgstr "Zu dieser Nachricht hochgeladen"
+
+#: functions.php:301
+msgid "Messages list"
+msgstr "Nachrichtenliste"
+
+#: functions.php:302
+msgid "Messages list navigation"
+msgstr "Nachrichtenliste Navigation"
+
+#: functions.php:303
+msgid "Filter message list"
+msgstr "Nachrichtenliste durchsuchen"
+
+#: functions.php:307
+msgid "Messages to display on a product page"
+msgstr "Nachrichten, die auf Produktseiten angezeigt werden"
+
+#: functions.php:328
+msgctxt "Taxonomy General Name"
+msgid "Discount Groups"
+msgstr "Rabatt-Gruppen"
+
+#: functions.php:329
+msgctxt "Taxonomy Singular Name"
+msgid "Discount Group"
+msgstr "Rabatt-Gruppe"
+
+#: functions.php:330
+msgid "Discount Groups"
+msgstr "Rabatt-Gruppen"
+
+#: functions.php:331
+msgid "All Groups"
+msgstr "Alle Gruppen"
+
+#: functions.php:332
+msgid "Parent Group"
+msgstr "Übergeordnete Gruppe"
+
+#: functions.php:333
+msgid "Parent Group:"
+msgstr "Übergeordnete Gruppe:"
+
+#: functions.php:334
+msgid "New Group Name"
+msgstr "Neuer Gruppenname"
+
+#: functions.php:335
+msgid "Add New Group"
+msgstr "Füge neue Gruppe hinzu"
+
+#: functions.php:336
+msgid "Edit Group"
+msgstr "Bearbeite Gruppe"
+
+#: functions.php:337
+msgid "Update Group"
+msgstr "Aktualisiere Gruppe"
+
+#: functions.php:338
+msgid "View Group"
+msgstr "Betrachte Gruppe"
+
+#: functions.php:339
+msgid "Separate groups with commas"
+msgstr "Trenne Gruppen mit Kommas"
+
+#: functions.php:340
+msgid "Add or remove groups"
+msgstr "Füge neue Gruppen hinzu oder lösche welche"
+
+#: functions.php:341
+msgid "Choose from the most used"
+msgstr "Wähle von den meist verwendeten"
+
+#: functions.php:342
+msgid "Popular Groups"
+msgstr "Beliebte Gruppen"
+
+#: functions.php:343
+msgid "Search Discount Groups"
+msgstr "Suche nach Rabatt-Gruppen"
+
+#: functions.php:344
+msgid "Not Found"
+msgstr "Nichts gefunden"
+
+#: functions.php:345
+msgid "No Groups"
+msgstr "Keine Gruppen"
+
+#: functions.php:346
+msgid "Group list"
+msgstr "Gruppenliste"
+
+#: functions.php:347
+msgid "Groups list navigation"
+msgstr "Gruppenliste Navigation"
+
+#: functions.php:461 functions.php:462 functions.php:2092
+msgid "Import Products from Excel"
+msgstr "Produkte von Excel importieren"
+
+#: functions.php:469 functions.php:470 functions.php:2123
+msgid "Import Resellers from Excel"
+msgstr "Importiere Wiederverkäufer von Excel"
+
+#: functions.php:477 functions.php:478 functions.php:2153
+msgid "Refresh Taxonomy Count"
+msgstr "Taxonomien-Anzahl neu berechnen"
+
+#: functions.php:487 functions.php:488
+msgid "Global Attribute Settings"
+msgstr "Globale Eigenchaftseinstellungen"
+
+#: functions.php:493 functions.php:494
+msgid "Footer Settings"
+msgstr "Footer Einstellungen"
+
+#: functions.php:499 functions.php:500
+msgid "Discount Settings"
+msgstr "Rabatteinstellungen"
+
+#: functions.php:526 functions.php:1664 functions.php:1678
+msgid "Categories"
+msgstr "Kategorien"
+
+#: functions.php:560
+msgid "Filterable Attributes"
+msgstr "Filterbare Eigenschaften"
+
+#: functions.php:563
+msgid "Which attributes should be filterable?"
+msgstr "Welche Attribute sollten filterbar sein?"
+
+#: functions.php:584 functions.php:1665 functions.php:1712
+msgid "Attributes"
+msgstr "Eigenschaften"
+
+#: functions.php:635 functions.php:683 functions.php:874
+msgid "Invoice"
+msgstr "Rechnung"
+
+#: functions.php:636
+msgid "Just an ordinary invoice. That's it! Simple as that."
+msgstr "Eine simple Rechnung, nichts mehr."
+
+#: functions.php:674
+msgid "Enable/Disable"
+msgstr "Aktivieren/Deaktivieren"
+
+#: functions.php:676
+msgid "Enable Invoice Payment"
+msgstr "Erlaube Rechnungen als Zahlungsmethode"
+
+#: functions.php:680
+msgid "Title"
+msgstr "Titel"
+
+#: functions.php:682
+msgid "This controls the title which the user sees during checkout."
+msgstr "Dies ist der Titel, der dem Benutzer bei der Kasse angezeigt wird."
+
+#: functions.php:689
+msgid "A message show to users while checking out."
+msgstr "Eine Nachricht die Benutzer beim Bezahlen angezeigt wird."
+
+#: functions.php:804 functions.php:883 woocommerce/cart/cart-totals.php:35
+#: woocommerce/cart/cart-totals.php:36 woocommerce/cart/cart.php:169
+#: woocommerce/checkout/review-order.php:115
+msgid "Subtotal"
+msgstr "Zwischensumme"
+
+#: functions.php:813
+msgid "Shipping & Handling"
+msgstr "Versand & Bearbeitung"
+
+#: functions.php:836 woocommerce/cart/cart-totals.php:99
+#: woocommerce/cart/cart-totals.php:100 woocommerce/cart/cart.php:39
+#: woocommerce/cart/cart.php:168 woocommerce/checkout/review-order.php:29
+#: woocommerce/checkout/review-order.php:168
+#: woocommerce/order/order-details.php:36
+msgid "Total"
+msgstr "Gesamtsumme"
+
+#: functions.php:851
+msgid "Hi"
+msgstr "Grüezi"
+
+#: functions.php:854
+#, php-format
+msgid ""
+"Thanks a lot for your order in the Hauser Feuerschutz AG Online-Shop. Should "
+"you have any questions, please do not hesitate sending a mail to %s or "
+"calling us from monday to thursday in between 8am and 5pm and on friday in "
+"between 8am and 4pm on the numer %s."
+msgstr ""
+"Vielen Dank für Ihre Bestellung Im Hauser Feuerschutz AG Online-Shop. "
+"Sollten Sie Fragen zu Ihrem Kundenkonto oder Ihrer Bestellung haben, senden "
+"Sie uns eine E-Mail an %s oder rufen Sie uns von Montag bis Donnerstag 8.00 "
+"bis 17.00 Uhr und Freitag 8.00 bis 16:00 Uhr unter der Nummer %s an."
+
+#: functions.php:859
+msgid "In the following your order confirmation"
+msgstr "Nachfolgend finden Sie Ihre Bestellbestätigung"
+
+#: functions.php:861
+msgid "Your invoice"
+msgstr "Ihre Bestellung"
+
+#: functions.php:864
+msgid "Billing information"
+msgstr "Rechnungsinformationen"
+
+#: functions.php:866 functions.php:899
+msgid "Email"
+msgstr "E-Mail"
+
+#: functions.php:867 functions.php:897
+msgid "Phone"
+msgstr "Telefon"
+
+#: functions.php:869
+msgid "Shipping information"
+msgstr "Versandinformationen"
+
+#: functions.php:873
+msgid "Payment method"
+msgstr "Zahlungsmethode"
+
+#: functions.php:876
+msgid "Swiss Post - Prio"
+msgstr "Schweizer Post - Prio"
+
+#: functions.php:878
+msgid "Your message"
+msgstr "Ihre Nachricht"
+
+#: functions.php:880
+msgid "Article"
+msgstr "Artikel"
+
+#: functions.php:881 woocommerce/cart/cart.php:36 woocommerce/cart/cart.php:99
+#: woocommerce/checkout/review-order.php:26
+#: woocommerce/order/order-details.php:34
+msgid "SKU"
+msgstr "Artikelnummer"
+
+#: functions.php:882
+msgid "Amount"
+msgstr "Stück"
+
+#: functions.php:895
+msgid ""
+"Should the articles not be in stock, you will immediately receive an email "
+"with your terms and conditions. Thank you!"
+msgstr ""
+"Sollte die Ware nicht an Lager sein, erhalten Sie umgehend eine "
+"Auftragsbestätigung mit Ihren Konditionen. Vielen Dank!"
+
+#: functions.php:898
+msgid "Telefax"
+msgstr "Telefax"
+
+#: functions.php:900
+msgid "Web"
+msgstr "Web"
+
+#: functions.php:941
+msgid "The order was successfully sent."
+msgstr "Bestellvorgang erfolgreich abgeschlossen."
+
+#: functions.php:942
+msgid ""
+"Thank you! Your order is being processed. You will receive a confirmation "
+"mail within the next few minutes. You could now leave this site."
+msgstr ""
+"Vielen Dank, Ihre Bestellung ist eingegangen. Sie erhalten in den nächsten "
+"Momenten eine Bestätigungs-E-Mail. Sie können diese Seite nun verlassen."
+
+#: functions.php:943
+#, php-format
+msgid "If you would like to return to the shop, click <a href='%s'>here</a>."
+msgstr ""
+"Sollten Sie zum Shop zurückkehren wollen, klicken Sie <a href='%s'>hier</a>."
+
+#: functions.php:1004
+msgctxt "breadcrumb"
+msgid "Home"
+msgstr "Home"
+
+#: functions.php:1015
+msgid "Payment Methods"
+msgstr "Zahlungsmethoden"
+
+#: functions.php:1131
+msgid "Flash Sale"
+msgstr "Kurzfristiger Rabatt"
+
+#: functions.php:1135
+msgid "Reseller Discount"
+msgstr "Rabatt für Wiederverkäufer"
+
+#: functions.php:1137 functions.php:3002 functions.php:3132
+msgid "Bulk Discount"
+msgstr "Mengenrabatt"
+
+#: functions.php:1177
+msgid "From"
+msgstr "Ab"
+
+#: functions.php:1257 functions.php:1268 functions.php:2759 functions.php:2819
+msgid "Post office box"
+msgstr "Postfach"
+
+#: functions.php:1306
+msgid "Customer id"
+msgstr "Kundennummer"
+
+#: functions.php:1318
+msgid "Discounts"
+msgstr "Rabatte"
+
+#: functions.php:1324 functions/rest.php:863
+msgid "Products"
+msgstr "Produkte"
+
+#: functions.php:1324
+msgid "Discount"
+msgstr "Rabatt"
+
+#: functions.php:1368
+#, php-format
+msgid "Would you like to continue shopping? <a href='%s'>Back to the shop.</a>"
+msgstr "Möchten Sie weiter einkaufen?  <a href='%s'>Zurück zum Shop.</a>"
+
+#: functions.php:1491 functions.php:1963
+msgid "Variations"
+msgstr "Varianten"
+
+#: functions.php:1563
+msgid "Subtotal with shipping:"
+msgstr "Zwischensumme mit Versand:"
+
+#: functions.php:1620
+msgid "Filters"
+msgstr "Filter"
+
+#: functions.php:1662
+msgid "Filter by"
+msgstr "Filtern nach"
+
+#: functions.php:1808 woocommerce/single-product/add-to-cart/variable.php:132
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#: functions.php:1945
+#, php-format
+msgid "%d of %d results are listed below."
+msgstr "Es werden %d von %d Ergebnisse angezeigt."
+
+#: functions.php:1949
+msgid "To see all search results click here."
+msgstr "Um alle Suchergebnisse zu sehen, klicken Sie hier."
+
+#: functions.php:1963 functions.php:1998
+msgid "Variation"
+msgstr "Variante"
+
+#: functions.php:2098 functions.php:2129
+msgid "Drop your excel file here"
+msgstr "Platzieren Sie Ihre Excel-Datei hier"
+
+#: functions.php:2170
+msgid "Do It!"
+msgstr "Mach es!"
+
+#: functions.php:2193
+msgid "Refreshed successfully!"
+msgstr "Aktualisierung erfolgreich!"
+
+#: functions.php:2601
+msgid "New product was successfully imported!"
+msgstr "Neues Produkt wurde erfolgreich importiert!"
+
+#: functions.php:2603
+msgid "Existing product was successfully updated!"
+msgstr "Bestehendes Produkt wurde erfolgreich aktualisiert!"
+
+#: functions.php:2608 functions.php:2726
+msgid "This operation can only be performed by admins!"
+msgstr "Diese Operation kann nur von Admins durchgeführt werden!"
+
+#: functions.php:2720
+msgid "New reseller was successfully imported!"
+msgstr "Neue Wiederverkäufer wurden erfolgreich importiert!"
+
+#: functions.php:2722
+msgid "Existing reseller was successfully updated!"
+msgstr "Bestehender Wiederverkäufer wurde erfolgreich aktualisiert!"
+
+#: functions.php:2743 functions.php:2803
+msgid "Additional line above"
+msgstr "Zusatzzeile oben"
+
+#: functions.php:2751 functions.php:2811
+msgid "Description"
+msgstr "Bezeichnung"
+
+#: functions.php:2877
+#, php-format
+msgid "You need to order at least %d of %s!"
+msgstr "Sie müssen mindestens %d von %s bestellen!"
+
+#: functions.php:2933
+msgid "Invalid state!"
+msgstr "Ungültiger Kanton!"
+
+#: functions.php:2938
+msgid "Invalid phone number!"
+msgstr "Ungültige Telephonnummer!"
+
+#: functions.php:2978
+#, php-format
+msgid ""
+"By the way, we're using <a href='%s' target='_blank'>Gravatar</a>, so if you "
+"would like to add a profile picture, register the same mail you're using in "
+"this shop on Gravatar and set your profile picture there. What are the "
+"benefits? Well if you ever encounter another site supporting Gravatar, you "
+"won't need to upload another profile picture as it already exists."
+msgstr ""
+"Nebenbei: Wir benutzen <a href='%s' target='_blank'>Gravatar</a>, falls Sie "
+"also ein Profilbild hinzufügen möchten, müssen Sie dieselbe E-Mail, die sie "
+"in diesem Shop verwenden, auf Gravatar registrieren und Ihr Profilbild da "
+"setzen. Wieso das Ganze? Falls Sie später wieder auf eine Seite treffen, die "
+"Gravatar unterstützt, müssen Sie ihr Profilbild kein zweites Mal hochladen, "
+"da es bereits existiert."
+
+#: functions.php:3005 functions.php:3135
+msgid "Min. Amount"
+msgstr "Anzahl (ab)"
+
+#: functions.php:3005 functions.php:3135
+msgid "Price per unit"
+msgstr "Stückpreis"
+
+#: functions.php:3005
+msgid "Actions"
+msgstr "Aktionen"
+
+#: functions.php:3030
+msgid "Minimum purchase quantity"
+msgstr "Mindesbestellmenge"
+
+#: functions.php:3032
+msgid "Enter the desired minimum purchase quantity."
+msgstr "Geben Sie die Mindesbestellmenge an."
+
+#: functions/emails/new-reseller.php:8
+msgid "New Reseller Added"
+msgstr "Neuer Wiederverkäufer hinzugefügt"
+
+#: functions/emails/new-reseller.php:9
+msgid ""
+"\"New Reseller Added\" mails are being sent to the new resellers added "
+"through the excel import."
+msgstr ""
+"„Neuer Wiederverkäufer hinzugefügt“ Mails werden den neuen Wiederverkäufer "
+"gesendet, die über den Excel Import hinzugefügt werden."
+
+#: functions/emails/new-reseller.php:11
+msgid "Welcome to our new shop"
+msgstr "Willkommen bei unserem neuen Online-Shop"
+
+#: functions/emails/new-reseller.php:12
+msgid "New Online Shop"
+msgstr "Neuer Online-Shop"
+
+#: functions/enqueues.php:62
+msgctxt "password strength"
+msgid "Password strength unknown"
+msgstr "Unbekannte Passwort Stärke"
+
+#: functions/enqueues.php:63
+msgctxt "password strength"
+msgid "Very weak"
+msgstr "Sehr schwach"
+
+#: functions/enqueues.php:64
+msgctxt "password strength"
+msgid "Weak"
+msgstr "Schwach"
+
+#: functions/enqueues.php:65
+msgctxt "password strength"
+msgid "Medium"
+msgstr "Mittel"
+
+#: functions/enqueues.php:66
+msgctxt "password strength"
+msgid "Strong"
+msgstr "Stark"
+
+#: functions/enqueues.php:67
+msgctxt "password mismatch"
+msgid "Mismatch"
+msgstr "Stimmt nicht überein"
+
+#: functions/feedback.php:28
+msgid "at"
+msgstr "am"
+
+#: functions/feedback.php:30
+msgid "Your comment is awaiting moderation."
+msgstr ""
+"Ihr Kommentar wird vor der Freischaltung noch von einem Moderator überprüft."
+
+#: functions/feedback.php:41 woocommerce/myaccount/my-address.php:51
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: functions/navbar.php:25
+msgid "User-Menu"
+msgstr "Benutzermenü"
+
+#: functions/navbar.php:26
+msgid "Cart-Menu"
+msgstr "Einkaufswagenmenü"
+
+#: functions/rest.php:60
+msgid "The thumbnail id of the term."
+msgstr "Die Thumbnail id der Kategorie."
+
+#: functions/setup.php:20
+msgid "Read more"
+msgstr "Mehr lesen"
+
+#: functions/setup.php:41 loops/content.php:42
+msgid "Previous"
+msgstr "Vorherige"
+
+#: functions/setup.php:42 loops/content.php:43
+msgid "Next"
+msgstr "Nächste"
+
+#: functions/widgets.php:22
+msgid "Footer"
+msgstr "Fusszeile"
+
+#: functions/widgets.php:24
+msgid "The footer widget area"
+msgstr "Fusszeilen Widget Bereich"
+
+#: header.php:51 header.php:135
+msgid "Logo negative"
+msgstr "Logo negativ"
+
+#: header.php:52
+msgid "Online-Shop"
+msgstr "Online-Shop"
+
+#: header.php:57
+msgid "Slogan negative"
+msgstr "Slogan negativ"
+
+#: header.php:120
+msgid "Login / Register"
+msgstr "Einloggen / Registrieren"
+
+#: header.php:140
+msgid "To our Homepage"
+msgstr "Zu unserer Homepage"
+
+#: header.php:142
+msgid "Search / Shop"
+msgstr "Suche / Shop"
+
+#: html/photoswipe-template.php:14
+msgid "Close (Esc)"
+msgstr "Schliessen (Esc)"
+
+#: html/photoswipe-template.php:15
+msgid "Share"
+msgstr "Teilen"
+
+#: html/photoswipe-template.php:16
+msgid "Toggle fullscreen"
+msgstr "De-/Aktiviere Vollbild"
+
+#: html/photoswipe-template.php:17
+msgid "Zoom in/out"
+msgstr "Ein-/Auszoomen"
+
+#: loops/comments.php:8
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+"Dieser Beitrag ist mit einem Passwort geschützt. Gib es ein, um die "
+"Kommentare zu sehen."
+
+#: loops/comments.php:17
+msgid "Feedback"
+msgstr "Rückmeldungen"
+
+#: loops/comments.php:19 loops/content-single.php:21 loops/content.php:33
+msgid "Comments"
+msgstr "Kommentare"
+
+#: loops/comments.php:19 loops/content-single.php:21 loops/content.php:33
+msgid "None"
+msgstr "Keine"
+
+#: loops/comments.php:34
+msgid "Be the first to write a comment."
+msgstr "Sei der erste, der ein Kommentar hinerlässt."
+
+#: loops/comments.php:36
+msgid "Comments are closed for this post."
+msgstr "Kommentare sind für diesen Beitrag deaktiviert."
+
+#: loops/comments.php:43
+msgid "Your feedback"
+msgstr "Ihr Feedback"
+
+#: loops/comments.php:43
+#, php-format
+msgid "Responses to %s"
+msgstr "Antworten zu %s"
+
+#: loops/comments.php:46
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+"Sie müssen <a href=\"%s\">eingeloggt</a> sein um diesen Beitrag zu "
+"kommentieren."
+
+#: loops/comments.php:51
+msgid "Logged in as"
+msgstr "Eingeloggt als"
+
+#: loops/comments.php:52
+msgid "Log out of this account"
+msgstr "Aus diesem Account ausloggen"
+
+#: loops/comments.php:52
+msgid "Log out"
+msgstr "Ausloggen"
+
+#: loops/comments.php:56 loops/comments.php:57
+msgid "Your name"
+msgstr "Ihr Name"
+
+#: loops/comments.php:56
+msgid "(required)"
+msgstr "(benötigt)"
+
+#: loops/comments.php:60 loops/comments.php:61
+msgid "Your email address"
+msgstr "Ihre E-Mail Adresse"
+
+#: loops/comments.php:60
+msgid "(required, but will not be published)"
+msgstr "(benötigt, wird jedoch nicht veröffentlicht)"
+
+#: loops/comments.php:64
+msgid "Your website"
+msgstr "Ihre Webseite"
+
+#: loops/comments.php:64
+msgid "if you have one (not required)"
+msgstr "falls sie eine haben (nicht benötigt)"
+
+#: loops/comments.php:65
+msgid "Your website url"
+msgstr "Die URL Ihrer Webseite"
+
+#: loops/comments.php:69 loops/comments.php:70
+msgid "Your comment"
+msgstr "Ihr Kommentar"
+
+#: loops/comments.php:72
+msgid "Submit comment"
+msgstr "Kommentar absenden"
+
+#: loops/content-search.php:19
+msgid "Sorry, your search yielded no results."
+msgstr "Tut uns leid, Ihre Suche ergab keine Resultate."
+
+#: loops/content-single.php:15 loops/content.php:21
+msgid "By"
+msgstr "Von"
+
+#: loops/content-single.php:20
+msgid "Filed under"
+msgstr "Kategorisiert unter"
+
+#: loops/content.php:28
+msgid "Continue reading"
+msgstr "Weiterlesen"
+
+#: loops/content.php:28
+msgid "&hellip; "
+msgstr "&hellip; "
+
+#: loops/content.php:32
+msgid "Category"
+msgstr "Kategorie"
+
+#: woocommerce/auth/form-grant-access.php:33
+#, php-format
+msgid "%s would like to connect to your store"
+msgstr "%s würde sich gerne mit Ihrem Shop verbinden"
+
+#: woocommerce/auth/form-grant-access.php:37
+#, php-format
+msgid "This will give \"%1$s\" %2$s access which will allow it to:"
+msgstr "Dies wird „%1$s“ %2$s Zugang gewähren was folgendes erlauben wird:"
+
+#: woocommerce/auth/form-grant-access.php:47
+#, php-format
+msgid "Logged in as %s"
+msgstr "Eingeloggt als %s"
+
+#: woocommerce/auth/form-grant-access.php:47
+msgid "Logout"
+msgstr "Ausgeloggt"
+
+#: woocommerce/auth/form-grant-access.php:51
+msgid "Approve"
+msgstr "Annehmen"
+
+#: woocommerce/auth/form-grant-access.php:52
+msgid "Deny"
+msgstr "Ablehnen"
+
+#: woocommerce/auth/form-login.php:33 woocommerce/auth/header.php:29
+#: woocommerce/myaccount/form-login.php:37
+msgid "Login"
+msgstr "Login"
+
+#: woocommerce/auth/form-login.php:39 woocommerce/myaccount/form-login.php:44
+msgid "Username or email address"
+msgstr "Benutzername oder E-Mail Adresse"
+
+#: woocommerce/auth/form-login.php:43 woocommerce/myaccount/form-login.php:48
+#: woocommerce/myaccount/form-login.php:102
+msgid "Password"
+msgstr "Passwort"
+
+#: woocommerce/cart/cart-shipping.php:47
+msgid "Shipping costs will be calculated once you have provided your address."
+msgstr ""
+"Die Lieferkosten werden erst berechnet, wenn Sie Ihre Adresse eingegeben "
+"haben."
+
+#: woocommerce/cart/cart-shipping.php:49
+msgid ""
+"There are no shipping methods available. Please double check your address, "
+"or contact us if you need any help."
+msgstr ""
+"Es sind keine Liefertypen verfügbar. Bitte überprüfen Sie Ihre Adresse oder "
+"kontaktieren Sie uns falls Sie Hilfe benötigen."
+
+#: woocommerce/cart/cart-totals.php:28
+msgid "Cart totals"
+msgstr "Warenkorbsumme"
+
+#: woocommerce/cart/cart-totals.php:57 woocommerce/cart/cart-totals.php:58
+msgid "Shipping"
+msgstr "Versand"
+
+#: woocommerce/cart/cart-totals.php:64
+#: woocommerce/checkout/review-order.php:145
+msgid "Subtotal with shipping"
+msgstr "Zwischensumme mit Versand"
+
+#: woocommerce/cart/cart-totals.php:78
+#, php-format
+msgid "estimated for %s"
+msgstr "geschätzt für %s"
+
+#: woocommerce/cart/cart.php:35 woocommerce/cart/cart.php:69
+#: woocommerce/checkout/review-order.php:25
+#: woocommerce/emails/email-order-details.php:34
+#: woocommerce/order/order-details.php:33
+#: woocommerce/single-product/add-to-cart/external.php:75
+#: woocommerce/single-product/add-to-cart/simple.php:150
+#: woocommerce/single-product/add-to-cart/variable.php:190
+msgid "Product"
+msgstr "Produkt"
+
+#: woocommerce/cart/cart.php:37 woocommerce/cart/cart.php:103
+#: woocommerce/cart/cart.php:104 woocommerce/checkout/review-order.php:27
+#: woocommerce/emails/email-order-details.php:36
+#: woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php:22
+msgid "Price"
+msgstr "Preis"
+
+#: woocommerce/cart/cart.php:38 woocommerce/cart/cart.php:133
+#: woocommerce/cart/cart.php:134 woocommerce/checkout/review-order.php:28
+#: woocommerce/emails/email-order-details.php:35
+#: woocommerce/order/order-details.php:35
+#: woocommerce/single-product/add-to-cart/simple.php:55
+#: woocommerce/single-product/add-to-cart/variable.php:82
+msgid "Quantity"
+msgstr "Anzahl"
+
+#: woocommerce/cart/cart.php:84 woocommerce/checkout/review-order.php:60
+#: woocommerce/checkout/review-order.php:95
+msgid "Show details"
+msgstr "Zeige Details"
+
+#: woocommerce/cart/cart.php:145
+#: woocommerce/single-product/add-to-cart/simple.php:84
+#: woocommerce/single-product/add-to-cart/variable.php:116
+msgid "Close"
+msgstr "Schliessen"
+
+#: woocommerce/cart/cart.php:148
+#, php-format
+msgid ""
+"<strong>Warning!</strong> The quantity of the product above has been updated "
+"to %d as this is the minimum purchase quantity for this product! (You tried "
+"to order %d)."
+msgstr ""
+"<strong>Warnung!</strong> Die Menge des obigen Produktes wurde zu %d "
+"geändert, da dies die Mindestbestellmenge ist. (Sie versuchten %d zu "
+"bestellen)"
+
+#: woocommerce/cart/cart.php:178
+msgid "Remove this item"
+msgstr "Entferne dieses Objekt"
+
+#: woocommerce/cart/cart.php:185
+msgid "Remove product from cart"
+msgstr "Entferne das Produkt aus dem Warenkorb"
+
+#: woocommerce/cart/cart.php:204
+msgid "Coupon"
+msgstr "Coupon"
+
+#: woocommerce/cart/cross-sells.php:27
+msgid "Similar or additional products"
+msgstr "Ergänzende oder ähnliche Produkte"
+
+#: woocommerce/checkout/form-checkout.php:28
+msgid "You must be logged in to checkout."
+msgstr "Sie müssen eingeloggt sein, um den Einkauf zu beenden."
+
+#: woocommerce/checkout/form-checkout.php:59
+msgid "Your order"
+msgstr "Ihre Bestellung"
+
+#: woocommerce/checkout/form-login.php:26
+msgid "Returning customer?"
+msgstr "Zurückkehrender Kunde?"
+
+#: woocommerce/checkout/form-login.php:26
+msgid "Click here to login"
+msgstr "Klicken Sie hier um sich einzuloggen"
+
+#: woocommerce/checkout/form-login.php:32
+msgid ""
+"If you have shopped with us before, please enter your details below. If you "
+"are a new customer, please proceed to the Billing &amp; Shipping section."
+msgstr ""
+"Falls Sie bereits einmal bei uns eingekauft haben, loggen Sie sich hier ein. "
+"Falls Sie ein neuer Kunde sind, fahren sie bei den Rechnungsdetails fort."
+
+#: woocommerce/checkout/terms.php:26
+msgid "Decline"
+msgstr "Ablehnen"
+
+#: woocommerce/checkout/terms.php:27
+msgid "Accept"
+msgstr "Akzeptieren"
+
+#: woocommerce/checkout/terms.php:39
+msgid ""
+"I've read and accept the <a data-toggle=\"modal\" data-target=\"#termModal"
+"\">terms &amp; conditions</a>"
+msgstr ""
+"Ich habe die <a data-toggle=\"modal\" data-target=\"#termModal\">Allgemeinen "
+"Geschäftsbedingungen</a> gelesen und akzeptiere diese"
+
+#: woocommerce/emails/email-order-details.php:26
+#: woocommerce/emails/email-order-details.php:28
+#, php-format
+msgid "Order #%s"
+msgstr "Bestellung #%s"
+
+#: woocommerce/emails/plain/reseller-added.php:9
+#: woocommerce/emails/reseller-added.php:11
+msgid ""
+"Your reseller account has been created in our new online shop. In order to "
+"use it, the password has to be reset for the following account:"
+msgstr ""
+"Ihr Wiederverkäufer-Account wurde in unserem neuen Online-Shop erstellt. Um "
+"ihn benutzen zu können, muss das Passwort für das folgende Benutzerkonto "
+"zurückgesetzt werden:"
+
+#: woocommerce/emails/plain/reseller-added.php:11
+#: woocommerce/emails/reseller-added.php:12
+#, php-format
+msgid "Username: %s"
+msgstr "Benutzername: %s"
+
+#: woocommerce/emails/plain/reseller-added.php:12
+#: woocommerce/emails/reseller-added.php:13
+msgid "To reset your password, visit the following address:"
+msgstr "Um Ihr Passwort zurückzusetzen, besuchen Sie folgende Adresse:"
+
+#: woocommerce/emails/reseller-added.php:16
+msgid "Click here to reset your password"
+msgstr "Klicken Sie hier um das Passwort zurückzusetzen"
+
+#: woocommerce/loop/result-count.php:39
+msgid "Showing the single result"
+msgstr "Zeige ein einzelnes Resultat"
+
+#: woocommerce/myaccount/dashboard.php:29
+#, php-format
+msgid "Hello %1$s (not %1$s? <a href=\"%2$s\">Log out</a>)"
+msgstr "Hallo %1$s (nicht %1$s? <a href=„%2$s“>Ausloggen</a>)"
+
+#: woocommerce/myaccount/dashboard.php:37
+#, php-format
+msgid ""
+"From your account dashboard you can view your <a href=\"%1$s\">recent "
+"orders</a>, manage your <a href=\"%2$s\">shipping and billing addresses</a>, "
+"and <a href=\"%3$s\">edit your password and account details</a>."
+msgstr ""
+"Von deinem Account Dashboard können Sie die <a href=„%1$s“>letzten "
+"Bestellungen ansehen</a>, Ihre <a href=„%2$s“>Liefer- und Rechnungsadresse "
+"bearbeiten</a>, und <a href=„%3$s“>Ihre Account Details sowie Ihr Password "
+"bearbeiten</a>."
+
+#: woocommerce/myaccount/form-edit-account.php:30
+msgid "First name"
+msgstr "Vorname"
+
+#: woocommerce/myaccount/form-edit-account.php:34
+msgid "Last name"
+msgstr "Nachname"
+
+#: woocommerce/myaccount/form-edit-account.php:40
+#: woocommerce/myaccount/form-login.php:95
+msgid "Email address"
+msgstr "E-Mail Adresse"
+
+#: woocommerce/myaccount/form-edit-account.php:45
+msgid "Password Change"
+msgstr "Passwort ändern"
+
+#: woocommerce/myaccount/form-edit-account.php:48
+msgid "Current Password (leave blank to leave unchanged)"
+msgstr "Aktuelles Passwort (leer lassen um nichts zu ändern)"
+
+#: woocommerce/myaccount/form-edit-account.php:52
+msgid "New Password (leave blank to leave unchanged)"
+msgstr "Neues Passwort (leer lassen um nichts zu ändern)"
+
+#: woocommerce/myaccount/form-edit-account.php:56
+msgid "Confirm New Password"
+msgstr "Bestätige das neue Passwort"
+
+#: woocommerce/myaccount/form-login.php:62
+msgid "Remember me"
+msgstr "Bleibe angemeldet"
+
+#: woocommerce/myaccount/form-login.php:66
+msgid "Lost your password?"
+msgstr "Passwort vergessen?"
+
+#: woocommerce/myaccount/form-login.php:79
+msgid "Register"
+msgstr "Registrieren"
+
+#: woocommerce/myaccount/form-login.php:88
+msgid "Username"
+msgstr "Benutzername"
+
+#: woocommerce/myaccount/form-login.php:109
+msgid "Anti-spam"
+msgstr "Anti-Spam"
+
+#: woocommerce/myaccount/my-address.php:27
+#: woocommerce/myaccount/my-address.php:32
+msgid "Billing Address"
+msgstr "Rechnungsadresse"
+
+#: woocommerce/myaccount/my-address.php:28
+msgid "Shipping Address"
+msgstr "Lieferadresse"
+
+#: woocommerce/myaccount/my-address.php:41
+msgid "The following addresses will be used on the checkout page by default."
+msgstr ""
+"Die folgenden Adressen werden als Standardwerte für das abschliessen von "
+"Einkäufen verwendet."
+
+#: woocommerce/myaccount/my-address.php:70
+msgid "You have not set up this type of address yet."
+msgstr "Sie haben diesen Adressentyp noch nicht festgelegt."
+
+#: woocommerce/myaccount/navigation.php:36
+msgid "Back to the shop"
+msgstr "Zurück zum Shop"
+
+#: woocommerce/order/order-details-customer.php:26
+msgid "Customer details"
+msgstr "Kundendetails"
+
+#: woocommerce/order/order-details-customer.php:32
+msgid "Note:"
+msgstr "Notiz:"
+
+#: woocommerce/order/order-details-customer.php:39
+msgid "Email:"
+msgstr "E-Mail:"
+
+#: woocommerce/order/order-details-customer.php:46
+msgid "Phone:"
+msgstr "Telefon:"
+
+#: woocommerce/order/order-details-customer.php:63
+msgid "Billing address"
+msgstr "Rechnungsadresse"
+
+#: woocommerce/order/order-details-customer.php:66
+#: woocommerce/order/order-details-customer.php:78
+#: woocommerce/single-product/add-to-cart/external.php:58
+#: woocommerce/single-product/add-to-cart/simple.php:133
+#: woocommerce/single-product/add-to-cart/variable.php:173
+msgid "N/A"
+msgstr "N/A"
+
+#: woocommerce/order/order-details-customer.php:75
+msgid "Shipping address"
+msgstr "Lieferadresse"
+
+#: woocommerce/order/order-details-item.php:54
+msgid "This product is no longer available!"
+msgstr "Dieses Produkt ist nicht mehr verfügbar!"
+
+#: woocommerce/order/order-details.php:29
+msgid "Order details"
+msgstr "Bestellungdetails"
+
+#: woocommerce/single-product/add-to-cart/external.php:43
+#: woocommerce/single-product/add-to-cart/simple.php:118
+#: woocommerce/single-product/add-to-cart/variable.php:158
+msgid "Summary"
+msgstr "Zusammenfassung"
+
+#: woocommerce/single-product/add-to-cart/external.php:55
+#: woocommerce/single-product/add-to-cart/simple.php:130
+#: woocommerce/single-product/add-to-cart/variable.php:170
+msgid "SKU:"
+msgstr "SKU:"
+
+#: woocommerce/single-product/add-to-cart/simple.php:88
+#: woocommerce/single-product/add-to-cart/variable.php:120
+#, php-format
+msgid ""
+"<strong>Heads up!</strong> This product has a minimum purchase quantity of "
+"%d."
+msgstr ""
+"<strong>Aufgepasst!</strong> Diese Produkt besitzt eine Mindestbestellmenge "
+"von %d."
+
+#: woocommerce/single-product/add-to-cart/simple.php:174
+#: woocommerce/single-product/add-to-cart/variation-add-to-cart-button.php:41
+msgid "taxes and shipping included"
+msgstr "zzgl. MwSt., zzgl. Versandkosten"
+
+#: woocommerce/single-product/add-to-cart/variable.php:33
+msgid "This product is currently out of stock and unavailable."
+msgstr ""
+"Dieses Produkt ist momentan nicht an Lager und deshalb nicht verfügbar."
+
+#: woocommerce/single-product/add-to-cart/variable.php:134
+msgid "Clear"
+msgstr "Zurücksetzen"
+
+#: woocommerce/single-product/add-to-cart/variation.php:20
+msgid ""
+"Sorry, this product is unavailable. Please choose a different combination."
+msgstr ""
+"Tut uns leid, dieses Produkt ist nicht verfügbar. Bitte wählen Sie eine "
+"andere Kombination."
+
+#: woocommerce/single-product/up-sells.php:27
+msgid "Similar products"
+msgstr "Ergänzende oder ähnliche Produkte"
+
+#~ msgid "Design and Code by <a target='_blank' href='%s'>Nico</a>"
+#~ msgstr "Design and Code by <a target=‚_blank‘ href=‚%s‘>Nico</a>"
+
+#~ msgid "Design and Code by <a target='_blank' href='%s'>Nico Hauser</a>"
+#~ msgstr "Design und Code von <a target='_blank' href='%s'>Nico Hauser</a>"
+
+#~ msgid "Cart Totals"
+#~ msgstr "Total"
+
+#~ msgid "Order Details"
+#~ msgstr "Bestellungsdetails:"
+
+#~ msgid "Customer Details"
+#~ msgstr "Kundendetails"
+
+#~ msgid "Telephone:"
+#~ msgstr "Telefon:"
+
+#~ msgid "Heads up!"
+#~ msgstr "Achtung!"
+
+#~ msgid ""
+#~ "Bulk discount doesn't apply for you because you've already reseller "
+#~ "discount on this product!"
+#~ msgstr ""
+#~ "Mengenrabatte gelten nicht für Sie, da Sie als Wiederverkäufer bereits "
+#~ "Rabatt auf dieses Produkt haben!"
+
+#~ msgid "You may be interested in&hellip;"
+#~ msgstr "Möglicherweise sind Sie interessiert an&hellip;"
+
+#~ msgid "You may also like&hellip;"
+#~ msgstr "Möglicherweise mögen Sie ebenfalls&hellip;"
+
+#~ msgid ""
+#~ "If you would like to return to the shop, click <a href='%s'>here</a>.s"
+#~ msgstr ""
+#~ "Sollten Sie zum Shop zurückkehren wollen, klicken Sie <a href='%s'>hier</"
+#~ "a>."
+
+#~ msgid "Read description"
+#~ msgstr "Beschreibung lesen"
+
+#~ msgid ""
+#~ "I&rsquo;ve read and accept the <a href=\"%s\" target=\"_blank\">terms "
+#~ "&amp; conditions</a>"
+#~ msgstr ""
+#~ "Ich have die <a href=\"%s\" target=\"_blank\">AGBs</a> gelesen und "
+#~ "akzeptiere diese."
+
+#~ msgid "Operation only allowed to admins!"
+#~ msgstr "Diese Aktion ist nur Admins erlaubt!"
+
+#~ msgid "Discount groups for variable products"
+#~ msgstr "Rabatt-Gruppen für variable Produkte"
+
+#~ msgid "Discount Group"
+#~ msgstr "Rabattgruppe"
+
+#~ msgid "Apply general reseller discount"
+#~ msgstr "Genereller Wiederverkäufer-Rabatt möglich"
+
+#~ msgid ""
+#~ "Check if the general reseller discount should be applied to this product."
+#~ msgstr ""
+#~ "Aktiviere dies falls der generelle Wiederverkäufer-Rabatt darauf "
+#~ "angewendet werden kann."
+
+#~ msgid "Reseller"
+#~ msgstr "Wiederverkäufer"
+
+#~ msgid "General Discount in % (for enabled products)"
+#~ msgstr "Allgemeiner Rabatt in % (für ausgewählte Produkte)"
+
+#~ msgid "Search Results for"
+#~ msgstr "Suchresultate für"
+
+#~ msgid "The page you were looking for does not exist."
+#~ msgstr "Die Seite, welche Sie suchen, existiert nicht."
+
+#~ msgid "If you want to use filters, click here."
+#~ msgstr "Falls Sie Filter benutzen möchten, klicken Sie hier."
+
+#~ msgid "Order Again"
+#~ msgstr "Erneut bestellen"
+
+#~ msgid "About the company"
+#~ msgstr "Über die Firma"
+
+#~ msgid "Sorting"
+#~ msgstr "Sortierung"
+
+#~ msgid ""
+#~ "Hello <strong>%1$s</strong> (not %1$s? <a href=\"%2$s\">Sign out</a>)."
+#~ msgstr ""
+#~ "Hallo <strong>%1$s</strong> (nicht %1$s? <a href=\"%2$s\">Ausloggen</a>)."
+
+#~ msgid ""
+#~ "From your account dashboard you can view your recent orders, manage your "
+#~ "shipping and billing addresses and <a href=\"%s\">edit your password and "
+#~ "account details</a>."
+#~ msgstr ""
+#~ "Von ihrem Account Dashboard können Sie ihre kürzlichen Bestellungen "
+#~ "anschauen, ihre Liefer- und Rechnungsadresse bearbeiten sowie <a href=\"%s"
+#~ "\">Ihre Accountdaten verwalten oder Ihr Passwort ändern</a>."
+
+#~ msgid "My Addresses"
+#~ msgstr "Meine Adressen"
+
+#~ msgid "My Address"
+#~ msgstr "Meine Adresse"
+
+#~ msgid "Attribute Settings"
+#~ msgstr "Eigenschaftseinstellungen"
+
+#~ msgid "Which attributes are in the shop globally filterable?"
+#~ msgstr "Welche Attribute sind im Shop global filterbar?"
+
+#~ msgid "Which attributes are filterable in the shop?"
+#~ msgstr "Welche Eigenschaften sind im Shop filterbar?"
+
+#~ msgid "New Order, #"
+#~ msgstr "Neue Bestellung, Nr."
+
+#~ msgid "Category Filters"
+#~ msgstr "Kategorienfilter"
+
+#~ msgid "Attribute Filters"
+#~ msgstr "Attributfilter"
+
+#~ msgid "Search Filter"
+#~ msgstr "Suchfilter"
+
+#~ msgid "Favorites"
+#~ msgstr "Favoriten"
+
+#~ msgid ""
+#~ "We're using <a href='%s' target='_blank'>Gravatar</a>, so if you would "
+#~ "like to add a profile picture, register the same mail you're using in "
+#~ "this shop on Gravatar and set your avatar there."
+#~ msgstr ""
+#~ "Wir benutzen <a href='%s' target='_blank'>Gravatar</a>, falls Sie also "
+#~ "ein Profilbild hinzufügen möchten, müssten Sie dieselbe E-Mail, die Sie "
+#~ "in diesem Shop verwenden, auf Gravatar registrieren."
+
+#~ msgid "Show meta information"
+#~ msgstr "Zeige Metainformationen"
+
+#~ msgid "Submit"
+#~ msgstr "Absenden"
+
+#~ msgid "Filterable in the shop"
+#~ msgstr "Filterbar im Shop"
+
+#~ msgid "Min."
+#~ msgstr "Min."
+
+#~ msgid "Max."
+#~ msgstr "Max."
+
+#~ msgid "In the following your order confirmation:"
+#~ msgstr "Nachfolgend finden Sie Ihre Bestellbestätigung:"
+
+#~ msgid "Your message:"
+#~ msgstr "Ihre Nachricht:"
+
+#~ msgid "Bill"
+#~ msgstr "Rechnung"
+
+#~ msgid "Just an ordinary bill. That's it! Simple as that."
+#~ msgstr "Eine simple, analoge Rechnung."
+
+#~ msgid "Enable Bill Payment"
+#~ msgstr "Aktiviere die Möglichkeit über Rechnungen zu bezahlen"
+
+#~ msgid "Navbar"
+#~ msgstr "Navigationsleiste"
+
+#~ msgid "If you want to use filters, click <a href='%s'>here</a>."
+#~ msgstr "Falls du Filter benutzen möchtest, klicke <a href='%s'>hier</a>."
+
+#~ msgid "To see all search results click <a href='%s'>here</a>."
+#~ msgstr "Um alle Suchresultate zu sehen, klicke <a href='%s'>hier</a>."
+
+#~ msgid ""
+#~ "%d of %d results are listed below. To see all search results click <a "
+#~ "href='%s'>here</a>."
+#~ msgstr ""
+#~ "Es werden %d von %d Ergebnissen angezeigt. Um alle Suchergebnisse zu "
+#~ "sehen, klicke <a href='%s'>hier</a>"
+
+#~ msgid "Newer"
+#~ msgstr "Neuer"
+
+#~ msgid "Older"
+#~ msgstr "Älter"
+
+#~ msgid "Sidebar"
+#~ msgstr "Seitenleiste"
+
+#~ msgid "The sidebar widget area"
+#~ msgstr "Seitenleisten Widget Bereich"

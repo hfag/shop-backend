@@ -1,0 +1,70 @@
+$brand-primary				: #2c3e50 !default;
+$gray						: #464646;
+
+[hidden] { display: none; }
+
+.visually-hidden {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+}
+
+div.awesomplete {
+	position: relative;
+}
+
+div.awesomplete > ul {
+	position: absolute;
+	left: 0;
+	z-index: 1;
+	min-width: 100%;
+	box-sizing: border-box;
+	list-style: none;
+	padding: 0;
+	margin: .2em 0 0;
+	background: #fff;
+	border: 1px solid $gray;
+	text-shadow: none;
+}
+
+div.awesomplete > ul[hidden],
+div.awesomplete > ul:empty {
+	display: none;
+}
+
+	/* Pointer */
+	div.awesomplete > ul:before {
+		content: "";
+		position: absolute;
+		top: -.43em;
+		left: 1em;
+		width: 0; height: 0;
+		padding: .4em;
+		background: white;
+		border: inherit;
+		border-right: 0;
+		border-bottom: 0;
+		-webkit-transform: rotate(45deg);
+		transform: rotate(45deg);
+		
+		background-color: #fff;
+	}
+
+	div.awesomplete > ul > li {
+		position: relative;
+		padding: .2em .5em;
+		cursor: pointer;
+	}
+	
+	div.awesomplete > ul > li:hover {
+		background-color: rgba($brand-primary, 0.75);
+		color: #fff;
+	}
+	
+	div.awesomplete > ul > li[aria-selected="true"] {
+		background-color: $brand-primary;
+		color: #fff;
+	}
+	
+		div.awesomplete mark {
+			
+		}

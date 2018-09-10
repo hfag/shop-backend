@@ -1,0 +1,4 @@
+*.log
+bower_components
+.codekit-cache
+.sass-cache/

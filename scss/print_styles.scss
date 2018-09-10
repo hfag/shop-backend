@@ -1,0 +1,87 @@
+@import "bourbon";
+
+@media print {
+	html body{
+		
+		h1 {
+		    font-size: 18px					!important;
+		}
+		
+		h2 {
+		    font-size: 16px					!important;
+		}
+		
+		h3 {
+		    font-size: 14px					!important;
+		}
+		
+		#body_content_inner {
+			font-size: 12px					!important;
+		}
+		
+		#template_footer #credit {
+		    font-size:10px					!important;
+		}
+		
+		*{
+			color: #000						!important;
+			border-color: #000				!important;
+			
+			box-shadow: none				!important;
+			text-shadow: none				!important;
+			
+			background-color: transparent	!important;
+		}
+		
+		#template_container{
+			border: none					!important;
+			//width: 100%						!important;
+		}
+		
+		#template_body{
+			//width: 100%						!important;
+		}
+		
+		#wrapper {
+		    padding: 0 						!important;
+		}
+		
+		#template_header {
+		    display: none					!important;
+		}
+
+		#template_footer{
+			display: none					!important;
+		}
+		
+		.order_item small br{
+			content: ", ";
+			display: none;
+		}
+		
+		#body_content table td {
+		    padding: 0						!important;
+		}
+		
+		#body_content table td td {
+		    padding: 5px					!important;
+		}
+		
+		#body_content table td th {
+		    padding: 5px					!important;
+		}
+		
+		#body_content table #addresses tr td{
+			padding: 0						!important;
+		}
+
+		ul{
+			list-style: none				!important;
+			padding-left: 0					!important;
+		}
+		
+		img{
+			@include filter(grayscale(100%));
+		}
+	}
+}
