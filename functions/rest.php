@@ -180,6 +180,16 @@
 				)
 			));
 			
+			register_rest_route('hfag', '/more-suggestions', array(
+				'methods' => 'GET',
+				'callback' => array($this, 'get_more_suggestions'),
+				'args' => array(
+					'query' => array(
+						'required' => true
+					)
+				)
+			));
+			
 			register_rest_route('hfag', '/product-categories', array(
 				'methods' => 'GET',
 				'callback' => array($this, 'get_product_categories')
@@ -926,54 +936,35 @@
 		public function get_suggestions(WP_REST_Request $request){
 			
 			$sections = array();
-			
-			add_filter('posts_join', function($join, $query){
 				
-				global $wpdb;
-			
-				$join .= " LEFT JOIN {$wpdb->postmeta} AS hfag_post_meta ON {$wpdb->posts}.ID = hfag_post_meta.post_id ";
-			
-				return $join;
-				
-			}, 10, 2);
-			
-			add_filter('posts_where', function($where, $query){
-				
-				global $wpdb;
-			
-				$where = preg_replace(
-					"/\(\s*{$wpdb->posts}.post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
-					"({$wpdb->posts}.post_title LIKE $1) OR (hfag_post_meta.meta_key = '_sku' AND hfag_post_meta.meta_value LIKE $1)", $where);
-			
-				return $where;
-				
-			}, 10, 2);
-	
-			$wp_query = new WP_Query(
-				array(
-					'post_type' => array('product', 'product_variation'),
-					's' => $request['query'],
-					'post_status' => 'publish',
-					'posts_per_page' => 10,
-					'orderby' => 'menu_order', 
-					'order' => 'ASC'
+			$posts = relevanssi_do_query(
+				new WP_Query(
+					array(
+						'post_type' => array('product', 'product_variation'),
+						's' => $request['query'],
+						'post_status' => 'publish',
+						'posts_per_page' => 10
+					)
 				)
 			);
+			
 			
 			$products = array();
 			$variations = array();
 	
-			foreach($wp_query->posts as $post){
+			foreach($posts as $post){
 				
 				$product = wc_get_product($post->ID);
 				
 				if($post->post_type === "product"){
-					$variations = count($product->get_available_variations());
+					$variation_count = count($product->get_available_variations());
 					
 					$products[] = array(
+						"id" => $post->ID,
 						"slug" => $post->post_name,
 						"title" => $post->post_title,
-						"variations" => $variations,
+						"variations" => $variation_count,
+						"sku" => $product->get_sku(),
 						"price" => $product->get_price(),
 						"type" => "product"
 					);
@@ -985,6 +976,7 @@
 						"parent_slug" => $parent->post_name,
 						"title" => $post->post_title,
 						"price" => $product->get_price(),
+						"sku" => $product->get_sku(),
 						"type" => "product_variation"
 					);
 				}
@@ -1017,6 +1009,7 @@
 			
 			foreach($search_terms as $term){
 				$terms[] = array(
+					"id" => $term->ID,
 					"slug" => $term->slug,
 					"title" => $term->name,
 					"count" => $term->count,
@@ -1031,6 +1024,72 @@
 			
 			return rest_ensure_response($sections);
 		}
+		
+		public function get_more_suggestions(WP_REST_Request $request){
+			
+			$offset = empty($request["offset"]) ? 0 : $request["offset"];
+			$type = empty($request["type"]) || !in_array($request["type"], array("product", "product_variation")) ? false : $request["type"];
+			
+			if(!$type){
+				return rest_ensure_response(array());
+			}
+			
+			$sections = array();
+				
+			$posts = relevanssi_do_query(
+				new WP_Query(
+					array(
+						'post_type' => $type,
+						's' => $request['query'],
+						'post_status' => 'publish',
+						'posts_per_page' => 30,
+						'offset' => $offset
+					)
+				)
+			);
+			
+			$products = array();
+			$variations = array();
+	
+			foreach($posts as $post){
+				
+				$product = wc_get_product($post->ID);
+				
+				if($post->post_type === "product"){
+					$variation_count = count($product->get_available_variations());
+					
+					$products[] = array(
+						"id" => $post->ID,
+						"slug" => $post->post_name,
+						"title" => $post->post_title,
+						"variations" => $variation_count,
+						"sku" => $product->get_sku(),
+						"price" => $product->get_price(),
+						"type" => "product"
+					);
+				}else{
+					$parent = get_post($product->get_parent_id());
+					
+					$variations[] = array(
+						"id" => $post->ID,
+						"parent_slug" => $parent->post_name,
+						"title" => $post->post_title,
+						"price" => $product->get_price(),
+						"sku" => $product->get_sku(),
+						"type" => "product_variation"
+					);
+				}
+	
+				/*$meta = wp_get_attachment_metadata(get_post_thumbnail_id($post->ID));
+				
+				if(empty($meta)){
+					return;
+				}*/
+			}
+			
+			return rest_ensure_response($type === "product" ? $products : $variations);
+		}
+
 		
 		public function get_product_categories(WP_REST_Request $request){
 			$args = array(

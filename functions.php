@@ -209,6 +209,26 @@ add_filter(		'wp_mail_from_name',						'feuerschutz_mail_from_name',							100		
 add_filter(		'posts_where' ,								'feuerschutz_where_clause',								100,	2	);
 add_filter(		'posts_orderby',							'feuerschutz_posts_orderby',							100,	2	);*/
 
+add_filter('relevanssi_content_to_index', 'hfag_index_relevanssi', 10, 2);
+
+function hfag_index_relevanssi($content, $post){
+	/*if ($post->post_type == "product"){
+		$args = array('post_parent' => $post->ID, 'post_type' => 'product_variation', 'posts_per_page' => -1);
+		$variations = get_posts($args);
+		if (!empty($variations)) {
+			foreach ($variations as $variation) {
+				$sku = get_post_meta($variation->ID, '_sku', true);
+				$content .= " $sku";
+			}
+		}
+	}else */if($post->post_type == "product_variation"){
+		$parent = get_post($post->post_parent);
+		$content .= " {$parent->post_content}";
+	}
+ 
+	return $content;
+}
+
 //Change wp default behaviour
 add_filter(		'wpmu_welcome_user_notification',			'__return_false'													);
 
