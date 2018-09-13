@@ -67,6 +67,37 @@
 				)
 			));
 			
+			add_filter('rest_prepare_post', function($data, $post, $context){
+				
+				unset($data->data["date"]);
+				unset($data->data["date_gmt"]);
+				unset($data->data["guid"]);
+				unset($data->data["modified"]);
+				unset($data->data["modified_gmt"]);
+				unset($data->data["status"]);
+				unset($data->data["type"]);
+				unset($data->data["link"]);
+				unset($data->data["content"]["protected"]);
+				unset($data->data["excerpt"]);
+				unset($data->data["comment_status"]);
+				unset($data->data["ping_status"]);
+				unset($data->data["template"]);
+				unset($data->data["meta"]);
+				
+				$data->remove_link('collection');
+			    $data->remove_link('self');
+			    $data->remove_link('about');
+			    $data->remove_link('author');
+			    $data->remove_link('replies');
+			    $data->remove_link('version-history');
+			    //$data->remove_link('https://api.w.org/featuredmedia');
+			    //$data->remove_link('https://api.w.org/attachment');
+			    $data->remove_link('https://api.w.org/term');
+			    $data->remove_link('curies');
+				
+				return $data;
+			}, 100, 3);
+			
 			add_filter('rest_prepare_product', function($data, $post, $context){
 				
 				unset($data->data["date"]);
@@ -94,6 +125,17 @@
 			    //$data->remove_link('https://api.w.org/attachment');
 			    $data->remove_link('https://api.w.org/term');
 			    $data->remove_link('curies');
+				
+				return $data;
+			}, 100, 3);
+			
+			add_filter('rest_prepare_product_cat', function($data, $post, $context){
+				
+				unset($data->data["link"]);
+				unset($data->data["_links"]);
+				
+				remove_filter('the_content', 'prepend_attachment');
+				$data->data["description"] = apply_filters('the_content', $data->data["description"]);
 				
 				return $data;
 			}, 100, 3);
@@ -730,6 +772,8 @@
 				
 				if(feuerschutz_reseller_discount_enabled($cart_item['data'])){
 					$cart_item['data']->set_price(feuerschutz_reseller_discount_get_price($cart_item['data']));
+				}else if($cart_item['data']->is_on_sale()){
+					$cart_item['data']->set_price($cart_item['data']->get_sale_price());
 				}else if(feuerschutz_bulk_discount_enabled($cart_item['data'])){
 					$cart_item['data']->set_price(feuerschutz_bulk_discount_get_price($cart_item['data'], $cart_item['quantity']));
 				}
@@ -749,7 +793,7 @@
 				}
 
 				
-				$item["price"] = floatval($_product->get_price());
+				$item["price"] = floatval($_product->get_regular_price());
 				if($product->get_price() != $item["price"]){
 					$item["discountPrice"] = floatval($product->get_price());	
 				}
@@ -866,6 +910,7 @@
 		public function post_submit_order(WP_REST_Request $request){
 			
 			$user_id = wp_validate_auth_cookie('', 'logged_in');
+			wp_set_current_user($user_id);
 			
 			$billingValidation = $this->validate_address($request["billingAddress"], "billing");
 			$shippingValidation = null;
@@ -926,6 +971,7 @@
 			$order->update_status('completed');
 			
 			WC()->cart->empty_cart();
+			WC()->session->set('cart', array());
 						
 			return rest_ensure_response(array(
 				"success" => true,
@@ -1067,6 +1113,9 @@
 		
 		public function get_sales(WP_REST_Request $request){
 			
+			$mediaRestController = new WP_REST_Attachments_Controller("media");
+			$postRestController = new WP_REST_Posts_Controller("product");
+			
 			$sales = array();
 			$products = array();
 			
@@ -1074,8 +1123,10 @@
 				$product = wc_get_product($productId);
 				
 				if(!is_a($product, "WC_Product_Variation")){
-					$postRestController = new WP_REST_Posts_Controller("product");
-					$products[] = $postRestController->prepare_item_for_response(get_post($productId), $request)->data;
+					$p = $postRestController->prepare_item_for_response(get_post($productId), $request)->data;
+					$thumbnailId = $p["featured_media"];
+					$p["thumbnail"] = $thumbnailId ? $mediaRestController->prepare_item_for_response(get_post($thumbnailId), new WP_REST_Request())->data : null;
+					$products[] = $p;
 				}
 						
 				if(is_a($product, "WC_Product_Variable")){
@@ -1090,15 +1141,38 @@
 				$sales[] = array(
 					"productId" => $isVariation ? $parent : $productId,
 					"variationId" => $isVariation ? $productId : null,
-					"price" => $product->get_price(),
+					"price" => $product->get_regular_price(),
 					"salePrice" => $product->get_sale_price(),
 					"saleEnd" => date("U", $sales_price_to)
 				);
 			}
 			
+			$posts = array();
+			$sticky = get_option('sticky_posts');
+			
+			$query = new WP_Query(
+				array(
+					"post_type" => "post",
+					"post_status" => "publish",
+					"post__in" => $sticky
+				)
+			);
+			
+			foreach($query->posts as $post){
+				$thumbnailId = get_post_thumbnail_id($post->ID);
+					
+				$posts[] = array(
+					"slug" => $post->post_name,
+					"title" => $post->post_title,
+					"thumbnail" => $thumbnailId ? ($mediaRestController->prepare_item_for_response(get_post($thumbnailId), new WP_REST_Request()))->data : null,
+					"description" => get_field("description", $post->ID)
+				);
+			}
+			
 			return rest_ensure_response(array(
 				"products" => $products,
-				"sales" => $sales
+				"sales" => $sales,
+				"posts" => $posts
 			));
 		}
 		
