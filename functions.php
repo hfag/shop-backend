@@ -473,7 +473,7 @@ function feuerschutz_fix_woocommerce_description_columns($columns){
  * @return void
  */
 function feuerschutz_admin_menu() {
-	remove_menu_page('edit.php');
+	//remove_menu_page('edit.php');
 	remove_menu_page('edit-comments.php');
 
 	add_submenu_page(
@@ -1147,12 +1147,10 @@ function feuerschutz_before_shop_loop_item_title(){
 	
 	$icons = array();
 	
-	if($product->is_on_sale()){
-		$icons[] = '<span class="hint--top" aria-label="' . __("Flash Sale", 'b4st') . '"><i class="fa fa-bolt"></i></span>';
-	}
-	
 	if(feuerschutz_reseller_discount_enabled($product)){
 		$icons[] = '<span class="hint--top" aria-label="' . __("Reseller Discount", 'b4st') . '"><i class="fa fa-percent"></i></span>';
+	}else if($product->is_on_sale()){
+		$icons[] = '<span class="hint--top" aria-label="' . __("Flash Sale", 'b4st') . '"><i class="fa fa-bolt"></i></span>';
 	}else if(feuerschutz_bulk_discount_enabled($product)){
 		$icons[] = '<span class="hint--top" aria-label="' . __("Bulk Discount", 'b4st') . '"><i class="fa fa-percent"></i></span>';
 	}
@@ -2975,6 +2973,8 @@ function feuerschutz_before_calculate_totals($cart){
 		if(feuerschutz_reseller_discount_enabled($cart_item['data'])){
 			$cart_item['data']->set_price(feuerschutz_reseller_discount_get_price($cart_item['data']));
 			
+		}else if($cart_item['data']->is_on_sale()){
+			$cart_item['data']->set_price($cart_item['data']->get_sale_price());
 		}else if(feuerschutz_bulk_discount_enabled($cart_item['data'])){
 			$cart_item['data']->set_price(feuerschutz_bulk_discount_get_price($cart_item['data'], $cart_item['quantity']));
 			
@@ -3146,7 +3146,7 @@ function feuerschutz_bulk_discount_enabled($product){
 function feuerschutz_bulk_discount_echo_table($product){
 	$bulk_discount = feuerschutz_get_discount_coeffs($product);
 
-	if(!empty($bulk_discount) && !feuerschutz_check_if_reseller_discounts(get_current_user_id()) && feuerschutz_bulk_discount_enabled($product)){
+	if(!empty($bulk_discount) && !feuerschutz_check_if_reseller_discounts(get_current_user_id()) && !$product->is_on_sale() && feuerschutz_bulk_discount_enabled($product)){
 		echo "<div class='bulk-discount col-xs-12 col-md-6 col-lg-4'>";
 		
 			echo "<div class='form-title'>" . __("Bulk Discount", 'b4st') . "</div>";

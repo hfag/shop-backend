@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 
-$bulk_discount		= feuerschutz_get_discount_coeffs($product);
+$bulk_discount		= $product->is_on_sale() ? array() : feuerschutz_get_discount_coeffs($product);
 $reseller			= feuerschutz_get_reseller_discount_by_user();
 $reseller_discount	= isset($reseller[$product->id]) ? $reseller[$product->id] : 0;
 
