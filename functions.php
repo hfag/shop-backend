@@ -209,8 +209,6 @@ add_filter(		'wp_mail_from_name',						'feuerschutz_mail_from_name',							100		
 add_filter(		'posts_where' ,								'feuerschutz_where_clause',								100,	2	);
 add_filter(		'posts_orderby',							'feuerschutz_posts_orderby',							100,	2	);*/
 
-add_filter('relevanssi_content_to_index', 'hfag_index_relevanssi', 10, 2);
-
 function hfag_index_relevanssi($content, $post){
 	/*if ($post->post_type == "product"){
 		$args = array('post_parent' => $post->ID, 'post_type' => 'product_variation', 'posts_per_page' => -1);
@@ -228,6 +226,7 @@ function hfag_index_relevanssi($content, $post){
  
 	return $content;
 }
+add_filter('relevanssi_content_to_index', 'hfag_index_relevanssi', 10, 2);
 
 //Change wp default behaviour
 add_filter(		'wpmu_welcome_user_notification',			'__return_false'													);
@@ -294,54 +293,6 @@ function feuerschutz_end_card(){
 function feuerschutz_init() {
 
 	load_theme_textdomain('b4st', get_template_directory() . '/lang/');
-
-	$labels = array(
-		'name'                  => _x( 'Messages', 'Post Type General Name', 'b4st' ),
-		'singular_name'         => _x( 'Message', 'Post Type Singular Name', 'b4st' ),
-		'menu_name'             => __( 'Messages', 'b4st' ),
-		'name_admin_bar'        => __( 'Message', 'b4st' ),
-		'archives'              => __( 'Messages', 'b4st' ),
-		'parent_item_colon'     => __( 'Parent Message:', 'b4st' ),
-		'all_items'             => __( 'All Messages', 'b4st' ),
-		'add_new_item'          => __( 'Add New Message', 'b4st' ),
-		'add_new'               => __( 'Add New', 'b4st' ),
-		'new_item'              => __( 'New Message', 'b4st' ),
-		'edit_item'             => __( 'Edit Message', 'b4st' ),
-		'update_item'           => __( 'Update Message', 'b4st' ),
-		'view_item'             => __( 'View Message', 'b4st' ),
-		'search_items'          => __( 'Search Message', 'b4st' ),
-		'not_found'             => __( 'Not found', 'b4st' ),
-		'not_found_in_trash'    => __( 'Not found in Trash', 'b4st' ),
-		'featured_image'        => __( 'Featured Image', 'b4st' ),
-		'set_featured_image'    => __( 'Set featured image', 'b4st' ),
-		'remove_featured_image' => __( 'Remove featured image', 'b4st' ),
-		'use_featured_image'    => __( 'Use as featured image', 'b4st' ),
-		'insert_into_item'      => __( 'Insert into message', 'b4st' ),
-		'uploaded_to_this_item' => __( 'Uploaded to this message', 'b4st' ),
-		'items_list'            => __( 'Messages list', 'b4st' ),
-		'items_list_navigation' => __( 'Messages list navigation', 'b4st' ),
-		'filter_items_list'     => __( 'Filter message list', 'b4st' ),
-	);
-	$args = array(
-		'label'                 => __( 'Message', 'b4st' ),
-		'description'           => __( 'Messages to display on a product page', 'b4st' ),
-		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', ),
-		'hierarchical'          => false,
-		'public'                => true,
-		'show_ui'               => true,
-		'show_in_menu'          => true,
-		'menu_position'         => 58,
-		'menu_icon'             => 'dashicons-format-status',
-		'show_in_admin_bar'     => false,
-		'show_in_nav_menus'     => false,
-		'can_export'            => false,
-		'has_archive'           => false,
-		'exclude_from_search'   => true,
-		'publicly_queryable'    => false,
-		'capability_type'       => 'post',
-	);
-	register_post_type( 'product_message', $args );
 	
 	
 	$labels = array(
