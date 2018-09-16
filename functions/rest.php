@@ -617,7 +617,7 @@
 			}*/
 			
 			//wp_set_current_user($user_id);
-			
+			//$this->cache_product_json();
 			$json = json_decode(file_get_contents(get_template_directory() . "/cache/products.json"));
 			
 			if(empty($json)){
@@ -879,10 +879,17 @@
 				$found = false;
 				foreach($items as $key => $item){
 					if($item["key"] === $cart_item_key){
-						WC()->cart->set_quantity($cart_item_key, $item["quantity"]);
-						$found = true;
-						unset($items[$key]);
-						break;
+						if($item["quantity"] <= 0){
+							WC()->cart->remove_cart_item($cart_item_key);
+							$found = true;
+							unset($items[$key]);
+							break;
+						}else{
+							WC()->cart->set_quantity($cart_item_key, $item["quantity"]);
+							$found = true;
+							unset($items[$key]);
+							break;	
+						}
 					}
 				}
 				if(!$found){
@@ -975,7 +982,11 @@
 						
 			return rest_ensure_response(array(
 				"success" => true,
-				"errors" => array()
+				"errors" => array(),
+				"data" => array(
+					"transactionId" => $order->get_id(),
+					"total" => $order->get_total()
+				)
 			));
 		}
 		
@@ -1495,7 +1506,7 @@
 						}
 						
 						$simpleProducts[] = array(
-							"id" => $product->get_id(),
+							"slug" => $product->get_slug(),
 							"variationId" => $variation["variation_id"],
 							"sku" => $variation["sku"],
 							"name" => trim(strip_tags($variation["variation_description"])),
