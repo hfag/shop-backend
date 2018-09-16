@@ -3,13 +3,14 @@
 function b4st_setup() {
 	add_editor_style('theme/css/editor-style.css');
 	add_theme_support('post-thumbnails');
-	update_option('thumbnail_size_w', 170);
-	update_option('medium_size_w', 470);
-	update_option('large_size_w', 970);
 	
-	add_image_size('feuerschutz_fix_width', 800, 9999, false);
-	add_image_size('feuerschutz_fix_height', 9999, 800, false);
-	
+	remove_image_size("search-thumbnail");
+	remove_image_size("woocommerce_thumbnail");
+	remove_image_size("woocommerce_single");
+	remove_image_size("woocommerce_gallery_thumbnail");
+	remove_image_size("shop_catalog");
+	remove_image_size("shop_single");
+	remove_image_size("shop_thumbnail");
 }
 add_action('init', 'b4st_setup');
 
