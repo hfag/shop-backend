@@ -155,6 +155,17 @@
 				)
 			));
 			
+			register_rest_field('product_cat', 'short_description', array(
+				'get_callback' => function($term_data){
+					return get_field("description", $term_data["taxonomy"] . "_" . $term_data["id"]);
+				},
+				'schema' => array(
+					'description' => __('The seo description of the term.', 'b4st'),
+					'type' => 'array',
+					'context' => array('view'),
+				)
+			));
+			
 			$post_type_name = 'product_variation';
 			if( isset( $wp_post_types[ $post_type_name ] ) ) {
 				$wp_post_types[$post_type_name]->show_in_rest = true;
@@ -819,6 +830,9 @@
 				$items[] = $item;
 			}
 			
+			WC()->cart->calculate_totals();
+			WC()->cart->calculate_shipping();
+			
 			return rest_ensure_response(
 				array(
 					"total" => floatval(WC()->cart->total),
@@ -934,9 +948,12 @@
 					);
 			
 			$billingAddress = $billingValidation["address"];
-			$shippingAddress = $shippingValidation === null ?
+			$shippingAddress = empty($shippingValidation) ?
 				$billingAddress :
 				$shippingValidation["address"];
+				
+			unset($shippingAddress["phone"]);
+			unset($shippingAddress["email"]);
 			
 			$comments = $request["comments"];
 			
@@ -969,9 +986,20 @@
 			$order->set_address($billingAddress, "billing");
 			$order->set_address($shippingAddress, "shipping");
 			
+			if($order->get_shipping_method() === ""){
+				$shipping = new WC_Order_Item_Shipping();
+				$shipping->set_name("Lieferkosten");
+				$shipping->set_method_title("Versandkostenpauschale");
+				$shipping->set_method_id("flat_rate");
+				$shipping->set_total(12.50);
+				
+				$order->add_item($shipping);
+			}
+			
 			$order->set_customer_note($comments);
 			$order->save();
 			
+			$order->calculate_shipping();
 			$order->calculate_totals();
 			
 			$order->payment_complete(); 

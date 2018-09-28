@@ -175,6 +175,11 @@ add_shortcode(		'gallery',								'feuerschutz_photoswipe_gallery_shortcode_func
 //Reduce min password strength because clients are ... well "smart"
 //add_filter( 'woocommerce_min_password_strength', function(){return 3;/*range: 0-3*/});
 
+add_action('after_password_reset', function(){
+	wp_redirect(home_url());
+    exit;
+});
+
 //Ajax
 
 	//Search
