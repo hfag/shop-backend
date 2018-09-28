@@ -180,6 +180,10 @@ add_action('after_password_reset', function(){
     exit;
 });
 
+add_filter('post_type_link',function($permalink, $post){
+	return str_replace("api.feuerschutz", "shop.feuerschutz", $permalink);
+}, 10, 2);
+
 //Ajax
 
 	//Search
