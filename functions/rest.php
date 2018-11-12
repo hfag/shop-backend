@@ -135,7 +135,10 @@
 				unset($data->data["_links"]);
 				
 				remove_filter('the_content', 'prepend_attachment');
-				$data->data["description"] = apply_filters('the_content', $data->data["description"]);
+				$data->data["description"] = apply_filters(
+					'the_content',
+					$data->data["description"]
+				);
 				
 				return $data;
 			}, 100, 3);
@@ -382,10 +385,10 @@
 				"first_name",
 				"last_name",
 				"country",
+				"state",
 				"address_1",
 				"postcode",
-				"city",
-				"state"
+				"city"
 			);
 			$all_keys = array_merge($required_keys, array(
 				"additional_line_above",
@@ -419,10 +422,12 @@
 					
 					$state_map = $countries_obj->get_states($address["country"]);
 					
-					if(in_array($address[$required_key], array_keys($state_map))){
+					if(!$state_map){
+						$validatedAddress[$required_key] = "-";
+					}else if(in_array($address[$required_key], array_keys($state_map))){
 						$validatedAddress[$required_key] = $state_map[$address[$required_key]];
 					}else{
-						$errors[] = "The $type " . $required_key . " has to be one of the following: " . implode(",", array_keys($state_map));
+						$errors[] = "The $type $required_key has to be one of the followings: " . implode(",", array_keys($state_map));
 					}
 				}else{
 					$validatedAddress[$required_key] = $address[$required_key];
@@ -431,7 +436,7 @@
 			}
 			
 			foreach($all_keys as $key){
-				if(!empty($address[$key])){
+				if(isset($address[$key])){
 					$validatedAddress[$key] = $address[$key];
 				}
 			}
@@ -555,8 +560,15 @@
 			$code = "";
 			
 			if(!is_wp_error($userId)){
-				wp_new_user_notification($userId, null, 'user');
+				//wp_new_user_notification($userId, null, 'user');
+				
+				$wc = new WC_Emails();
+				$wc->customer_new_account($userId);
+				
 				wp_set_auth_cookie($userId, false, true);
+
+				update_user_meta($userId, "billing_email", $request["username"]);
+
 				$success = true;
 			}else{
 				$code = $signon->get_error_code();
@@ -1320,6 +1332,22 @@
 			
 			foreach($validatedAddress["address"] as $key => $value){
 				update_user_meta($user_id, $request["type"] . "_" . $key, $value);
+				//var_dump("userId" . $user_id . ": " . $request["type"] . "_" . $key . "=>" . $value);
+			}
+
+			if(
+				$request["type"] === "billing" &&
+				!empty($validatedAddress["address"]["first_name"]) &&
+				!empty($validatedAddress["address"]["last_name"])
+			){
+				wp_update_user(
+					array(
+						'ID' => $user_id,
+						'first_name' => $validatedAddress["address"]["first_name"],
+						'last_name' => $validatedAddress["address"]["last_name"],
+						'display_name' => $validatedAddress["address"]["first_name"] . " " . $validatedAddress["address"]["last_name"]
+					)
+				);
 			}
 			
 			return rest_ensure_response(array(
