@@ -10,7 +10,6 @@ All the B4ST functions are in the PHP pages in the `functions/` folder.
 define("FEUERSCHUTZ_SEARCH_INDEX_CRON_ONLY", false);
 
 
-
 /*add_action( 'wp_footer', function(){
 	if(current_user_can('manage_options')){
 		global $wp_filter;
@@ -176,8 +175,12 @@ add_shortcode(		'gallery',								'feuerschutz_photoswipe_gallery_shortcode_func
 //add_filter( 'woocommerce_min_password_strength', function(){return 3;/*range: 0-3*/});
 
 add_action('after_password_reset', function(){
-	wp_redirect(home_url());
+	wp_redirect("https://shop.feuerschutz.ch"); 
     exit;
+});
+
+add_filter( 'lostpassword_redirect', function ($lostpassword_redirect){
+	return "https://shop.feuerschutz.ch";
 });
 
 add_filter('post_type_link',function($permalink, $post){
@@ -300,6 +303,13 @@ function feuerschutz_end_card(){
  * @return void
  */
 function feuerschutz_init() {
+
+	global $pagenow;
+
+	if('wp-login.php' == $pagenow && !isset($_GET["action"]) && $_GET["action"] !== "rp"){
+		wp_redirect('https://shop.feuerschutz.ch/login');
+		exit();
+	}
 
 	load_theme_textdomain('b4st', get_template_directory() . '/lang/');
 	
