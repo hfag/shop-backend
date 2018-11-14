@@ -561,6 +561,11 @@
 			
 			if(!is_wp_error($userId)){
 				//wp_new_user_notification($userId, null, 'user');
+
+				$u = new WP_User($userId);
+				if($u != null){
+					$u->set_role('customer');
+				}
 				
 				$wc = new WC_Emails();
 				$wc->customer_new_account($userId);
@@ -571,7 +576,7 @@
 
 				$success = true;
 			}else{
-				$code = $signon->get_error_code();
+				$code = $userId->get_error_code();
 			}
 			
 			return rest_ensure_response(array(
