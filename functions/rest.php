@@ -1,11 +1,6 @@
 <?php
 	
-	class Hfag_Rest{
-		
-		private $callback_map = array(
-			"development" => "http://localhost:8080/login",
-			"production" => "https://shop.feuerschutz.ch/login"
-		);
+	class Hfag_Rest {
 		
 		public function Hfag_Rest(){
 			add_action('init', array($this, 'add_rest_support'), 25);
@@ -180,42 +175,6 @@
 		
 		public function init_routes(){
 			
-			/*register_rest_route('hfag', '/wc-callback', array(
-				'methods' => 'POST',
-				'callback' => array($this, 'post_wc_callback'),
-				'args' => array(
-					'key_id' => array(
-						'required' => true
-					),
-					'user_id' => array(
-						'required' => true
-					),
-					'consumer_key' => array(
-						'required' => true
-					),
-					'consumer_secret' => array(
-						'required' => true
-					),
-					'key_permissions' => array(
-						'required' => true
-					)
-				)
-			));*/
-			/*register_rest_route('hfag', '/wc-callback/(?P<environment>.+)', array(
-				'methods' => 'GET',
-				'callback' => array($this, 'get_wc_callback'),
-				'args' => array(
-					'environment' => array(
-						'required' => true,
-						'validate_callback' => function($parameter, $request, $key){
-							return in_array($parameter, array_keys($this->callback_map));
-						}
-					),
-					'user_id' => array(
-						'required' => true
-					)
-				)
-			));*/
 			
 			register_rest_route('hfag', '/login', array(
 				'methods' => 'POST',
