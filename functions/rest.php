@@ -14,6 +14,30 @@
 			
 			add_filter('rest_pre_serve_request', array($this, "pre_serve_request"), 10, 4);
 			
+			/**
+			 * We have to tell WC that this should not be handled as a REST request.
+			 * Otherwise we can't use the product loop template contents properly.
+			 * Since WooCommerce 3.6
+			 *
+			 * @param bool $is_rest_api_request
+			 * @return bool
+			 */
+			add_filter( 'woocommerce_is_rest_api_request', function ( $is_rest_api_request ) {
+				if ( empty( $_SERVER['REQUEST_URI'] ) ) {
+						return $is_rest_api_request;
+				}
+			
+				// Bail early if this is not our request.
+				if ( false === strpos( $_SERVER['REQUEST_URI'], "hfag" ) ) {
+					return $is_rest_api_request;
+				}
+				
+				wc()->frontend_includes();
+			
+				return false;
+			} );
+			
+			
 			//change some woocommerce behaviour
 			add_filter('rest_product_collection_params', function($params){
 				$params['orderby']['enum'][] = 'menu_order';
@@ -783,7 +807,7 @@
 				$item["key"] = $cart_item_key;
 				$item["title"] = apply_filters( 'woocommerce_cart_item_name', $product->get_title(), $cart_item, $cart_item_key);
 				$item["thumbnailId"] = intval($product->get_image_id());
-				$item["attributes"] = wc_get_formatted_cart_item_data($cart_item);
+				$item["attributes"] = wc_get_formatted_cart_item_data($cart_item, true);
 				$item["sku"] = $product->get_sku();
 				
 				if(is_a($product, "WC_Product_Variation")){	
@@ -846,10 +870,10 @@
 		
 		public function post_shopping_cart(WP_REST_Request $request){
 			
-			$this->loadCart();
-			
 			$user_id = wp_validate_auth_cookie('', 'logged_in');
 			wp_set_current_user($user_id);
+			
+			$this->loadCart();
 			
 			$product_id = apply_filters('woocommerce_add_to_cart_product_id', absint($request['product_id']));
 			$product = new WC_Product_Variable($product_id);
@@ -862,8 +886,8 @@
 			
 			$passed_validation = apply_filters('woocommerce_add_to_cart_validation', true, $product_id, $quantity);
 			$json = array();
-			
-			if ($passed_validation && WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation)){
+			$add = WC()->cart->add_to_cart($product_id, $quantity, $variation_id, $variation);
+			if ($passed_validation && $add){
 				$json = $this->get_shopping_cart($request)->data;
 				$json["upsellIds"] = $product->get_upsell_ids();
 			}else{
@@ -1591,11 +1615,13 @@
 		}
 		
 		public function loadCart(){
-			wc()->frontend_includes();
-			WC()->session = new WC_Session_Handler();
-			WC()->session->init();
-			WC()->customer = new WC_Customer( get_current_user_id(), true );
-			WC()->cart = new WC_Cart();
+			if(WC()->cart === null){
+				wc()->frontend_includes();
+				WC()->session = new WC_Session_Handler();
+				WC()->session->init();
+				WC()->customer = new WC_Customer( get_current_user_id(), true );
+				WC()->cart = new WC_Cart();	
+			}
 		}
 		
 		public function cache_product_json(){
