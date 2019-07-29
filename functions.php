@@ -13,12 +13,13 @@
 } );*/
 
 require_once locate_template('/functions/enqueues.php');
+require_once locate_template('/functions/shortcodes.php');
+require_once locate_template('/functions/email.php');
 require_once locate_template('/functions/rest.php');
 
 add_action(		'admin_menu',								'feuerschutz_admin_menu',								20			);
 add_action(		'after_setup_theme',						'feuerschutz_after_setup_theme',						20			);
 add_action(		'init',										'feuerschutz_init',										0			);
-add_action(		'init',										'feuerschutz_late_init',								100			);//late, wait for woocommerce to init it's taxonomies
 add_action(		'admin_head',								'feuerschutz_fix_svg_thumb_display',					10			);
 
 add_action(		'after_switch_theme',						'feuerschutz_activation',								0			);
@@ -81,8 +82,8 @@ add_action(		'woocommerce_product_after_variable_attributes', 'feuerschutz_produ
 add_action(		'woocommerce_save_product_variation',		'feuerschutz_save_product_variation',					10,		1	);
 
 /* Shortcodes */
-remove_shortcode(	'gallery'																									);
-add_shortcode(		'gallery',								'feuerschutz_photoswipe_gallery_shortcode_func'						);
+/*remove_shortcode(	'gallery'																									);
+add_shortcode(		'gallery',								'feuerschutz_photoswipe_gallery_shortcode_func'						);*/
 
 //Reduce min password strength because clients are ... well "smart"
 //add_filter( 'woocommerce_min_password_strength', function(){return 3;/*range: 0-3*/});
@@ -229,6 +230,37 @@ function feuerschutz_init() {
 			return array();
 		}
 	});
+	
+	register_post_type( 'downloads',
+		array(
+			'labels' => array(
+				'name' => __( 'Downloads', 'b4st' ),
+				'singular_name' => __( 'Download', 'b4st')
+			),
+		'public' => false,
+		'show_ui' => true,
+		'menu_position' => 5,
+		'menu_icon' => 'dashicons-download',
+		'hierarchical' => false,
+		'supports' => array('title'),
+		'query_var' => false,
+		'has_archive' => false
+	));
+	
+	register_taxonomy('download_categories', array('downloads'),
+		array(
+			'label' => __( 'Download Categories', 'v4st' ),
+			'labels' => array(
+				'name' => __( 'Download Categories', 'b4st' ),
+				'singular_name' => __( 'Download Category', 'b4st' ),
+			),
+			'public' => false,
+			'show_ui' => true,
+			'show_in_nav_menus' => false,
+			'show_tagcloud' => false,
+			'show_admin_column' => true,
+			'hierarchical' => false,
+	));
 
 }
 
@@ -700,18 +732,21 @@ function feuerschutz_photoswipe_gallery($attachment_ids){
 					if(!isset($meta['height']) || !isset($meta['width'])){
 						//probably an svg
 						$svgfile = simplexml_load_file(get_attached_file($attachment_id));
-						$xmlattributes = $svgfile->attributes();
-						$viewbox = explode(" ", (string) $xmlattributes->viewBox);
-						if(count($viewbox) == 4){
-							$meta['width'] = 2000; //big number so it'll be all right on all displays
-							$meta['height'] = ($viewbox[3] / $viewbox[2] * $meta['width']); //calc based on ratio given by the viewbox
-						}else{
-							//Welp don't know what to do sooooo
-							$meta['height'] = $meta['width'] = 0;
+						
+						if($svgfile !== false){
+							$xmlattributes = $svgfile->attributes();
+							$viewbox = explode(" ", (string) $xmlattributes->viewBox);
+							if(count($viewbox) == 4){
+								$meta['width'] = 2000; //big number so it'll be all right on all displays
+								$meta['height'] = ($viewbox[3] / $viewbox[2] * $meta['width']); //calc based on ratio given by the viewbox
+							}
 						}
+						
+						//Welp don't know what to do sooooo
+						$meta['height'] = $meta['width'] = 0;
 					}
 					
-					$return .= "<div class='".feuerschutz_get_small_cols()." image-preview'".
+					$return .= "<div class='image-preview'".
 					
 						" data-full-src='".$link."' data-title='".$caption."'".
 						" data-width='".$meta['width']."' data-height='".$meta['height']."'".

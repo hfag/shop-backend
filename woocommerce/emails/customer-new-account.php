@@ -12,7 +12,7 @@
  *
  * @see https://docs.woocommerce.com/document/template-structure/
  * @package WooCommerce/Templates/Emails
- * @version 3.5.0
+ * @version 3.5.2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,16 +23,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php //do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
-<?php /* translators: %s Customer first name */ ?>
+<?php /* translators: %s Customer username */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_login ) ); ?></p>
 <?php /* translators: %1$s: Site title, %2$s: Username, %3$s: My account link */ ?>
-<p>
-	Vielen Dank für die Erstellung eines Kontos im Shop der Hauser Feuerschutz AG. Ihr Benutzername lautet <?php echo esc_html( $user_login ) ?>.
-	Unter folgendem Link können Sie auf Ihr Konto zugreifen, um Bestellungen anzuzeigen, Ihr Passwort zu ändern usw.: <a href="https://shop.feuerschutz.ch/konto/">https://shop.feuerschutz.ch/konto/</a>
-</p>
+<p><?php printf( esc_html__( 'Thanks for creating an account on %1$s. Your username is %2$s. You can access your account area to view orders, change your password, and more at: %3$s', 'woocommerce' ), esc_html( $blogname ), '<strong>' . esc_html( $user_login ) . '</strong>', make_clickable( esc_url("https://shop.feuerschutz.ch/konto/") ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
-
-<p>Wir freuen uns darauf, bald von Ihnen zu hören.</p>
+<p><?php esc_html_e( 'We look forward to seeing you soon.', 'woocommerce' ); ?></p>
 
 <?php
 //do_action( 'woocommerce_email_footer', $email );

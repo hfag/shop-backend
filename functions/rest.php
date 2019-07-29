@@ -62,6 +62,17 @@
 				)
 			));
 			
+			register_rest_field('post', 'description', array(
+				'get_callback' => function($post_data){
+					return get_field("description", $post_data->ID);
+				},
+				'schema' => array(
+					'description' => __('A short description', 'b4st'),
+					'type' => 'array',
+					'context' => array('view'),
+				)
+			));
+			
 			add_filter('rest_prepare_post', function($data, $post, $context){
 				
 				unset($data->data["date"]);
@@ -558,7 +569,7 @@
 			
 			$fields = get_field("fields", $productObject->ID);
 			$product['fields'] = $fields ? $fields : array();
-			$product['galleryImageIds'] = $variable->get_gallery_attachment_ids();
+			$product['galleryImageIds'] = $variable->get_gallery_image_ids();
 			$product['crossSellIds'] = $variable->get_cross_sell_ids();
 			
 			$description = get_field("description", $productObject->ID);
@@ -753,6 +764,8 @@
 			$user_id = wp_validate_auth_cookie('', 'logged_in');
 			wp_set_current_user($user_id);
 			
+			$this->loadCart();
+			
 			$items = array();
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$item = array();
@@ -832,6 +845,9 @@
 		}
 		
 		public function post_shopping_cart(WP_REST_Request $request){
+			
+			$this->loadCart();
+			
 			$user_id = wp_validate_auth_cookie('', 'logged_in');
 			wp_set_current_user($user_id);
 			
@@ -864,6 +880,8 @@
 			wp_set_current_user($user_id);
 			
 			$items = $request["items"];
+			
+			$this->loadCart();
 			
 			foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item){
 				$found = false;
@@ -905,6 +923,8 @@
 		}
 		
 		public function post_submit_order(WP_REST_Request $request){
+			
+			$this->loadCart();
 			
 			$user_id = wp_validate_auth_cookie('', 'logged_in');
 			wp_set_current_user($user_id);
@@ -1177,6 +1197,7 @@
 				$thumbnailId = get_post_thumbnail_id($post->ID);
 					
 				$posts[] = array(
+					"id" => $post->ID,
 					"slug" => $post->post_name,
 					"title" => $post->post_title,
 					"thumbnail" => $thumbnailId ? ($mediaRestController->prepare_item_for_response(get_post($thumbnailId), new WP_REST_Request()))->data : null,
@@ -1567,6 +1588,14 @@
 			}
 			
 			return $simpleProducts;
+		}
+		
+		public function loadCart(){
+			wc()->frontend_includes();
+			WC()->session = new WC_Session_Handler();
+			WC()->session->init();
+			WC()->customer = new WC_Customer( get_current_user_id(), true );
+			WC()->cart = new WC_Cart();
 		}
 		
 		public function cache_product_json(){
