@@ -55,7 +55,7 @@
 			$today->add(new DateInterval('P1D'));
 			
 			wp_schedule_event($today->getTimestamp(), "daily", "hfag_cache_product_json");
-			hfag_cache_product_json();//run once
+			$this->cache_product_json();//run once
 		}
 		
 		public function add_rest_support(){
