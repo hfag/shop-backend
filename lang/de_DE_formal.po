@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: b4st\n"
-"POT-Creation-Date: 2019-07-28 18:44+0200\n"
-"PO-Revision-Date: 2019-07-28 18:45+0200\n"
+"POT-Creation-Date: 2019-08-07 20:00+0200\n"
+"PO-Revision-Date: 2019-08-07 20:00+0200\n"
 "Last-Translator: Nico Hauser <me@tyratox.ch>\n"
 "Language-Team: \n"
 "Language: de_CH\n"
@@ -22,264 +22,66 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-5: img\n"
 "X-Poedit-SearchPathExcluded-6: fonts\n"
 
-#: functions.php:190
-msgctxt "Taxonomy General Name"
-msgid "Discount Groups"
-msgstr "Rabatt-Gruppen"
-
-#: functions.php:191
-msgctxt "Taxonomy Singular Name"
-msgid "Discount Group"
-msgstr "Rabatt-Gruppe"
-
-#: functions.php:192
-msgid "Discount Groups"
-msgstr "Rabatt-Gruppen"
-
-#: functions.php:193
-msgid "All Groups"
-msgstr "Alle Gruppen"
-
-#: functions.php:194
-msgid "Parent Group"
-msgstr "Übergeordnete Gruppe"
-
-#: functions.php:195
-msgid "Parent Group:"
-msgstr "Übergeordnete Gruppe:"
-
-#: functions.php:196
-msgid "New Group Name"
-msgstr "Neuer Gruppenname"
-
-#: functions.php:197
-msgid "Add New Group"
-msgstr "Füge neue Gruppe hinzu"
-
-#: functions.php:198
-msgid "Edit Group"
-msgstr "Bearbeite Gruppe"
-
-#: functions.php:199
-msgid "Update Group"
-msgstr "Aktualisiere Gruppe"
-
-#: functions.php:200
-msgid "View Group"
-msgstr "Betrachte Gruppe"
-
-#: functions.php:201
-msgid "Separate groups with commas"
-msgstr "Trenne Gruppen mit Kommas"
-
-#: functions.php:202
-msgid "Add or remove groups"
-msgstr "Füge neue Gruppen hinzu oder lösche welche"
-
-#: functions.php:203
-msgid "Choose from the most used"
-msgstr "Wähle von den meist verwendeten"
-
-#: functions.php:204
-msgid "Popular Groups"
-msgstr "Beliebte Gruppen"
-
-#: functions.php:205
-msgid "Search Discount Groups"
-msgstr "Suche nach Rabatt-Gruppen"
-
-#: functions.php:206
-msgid "Not Found"
-msgstr "Nichts gefunden"
-
-#: functions.php:207
-msgid "No Groups"
-msgstr "Keine Gruppen"
-
-#: functions.php:208
-msgid "Group list"
-msgstr "Gruppenliste"
-
-#: functions.php:209
-msgid "Groups list navigation"
-msgstr "Gruppenliste Navigation"
-
-#: functions.php:236
-msgid "Downloads"
-msgstr "Downloads"
-
-#: functions.php:237
-msgid "Download"
-msgstr "Download"
-
-#: functions.php:251 functions.php:253
-msgid "Download Categories"
-msgstr "Download Kategorien"
-
-#: functions.php:254
-msgid "Download Category"
-msgstr "Download Kategorie"
-
-#: functions.php:295 functions.php:296 functions.php:777
+#: functions/admin-menu.php:21 functions/admin-menu.php:22
+#: functions/admin-menu.php:89
 msgid "Import Products from Excel"
 msgstr "Produkte von Excel importieren"
 
-#: functions.php:303 functions.php:304 functions.php:808
+#: functions/admin-menu.php:29 functions/admin-menu.php:30
+#: functions/admin-menu.php:120
 msgid "Import Resellers from Excel"
 msgstr "Importiere Wiederverkäufer von Excel"
 
-#: functions.php:311 functions.php:312 functions.php:838
+#: functions/admin-menu.php:37 functions/admin-menu.php:38
+#: functions/admin-menu.php:150
 msgid "Refresh Taxonomy Count"
 msgstr "Taxonomien-Anzahl neu berechnen"
 
-#: functions.php:321 functions.php:322
+#: functions/admin-menu.php:47 functions/admin-menu.php:48
 msgid "Global Attribute Settings"
 msgstr "Globale Eigenchaftseinstellungen"
 
-#: functions.php:327 functions.php:328
+#: functions/admin-menu.php:53 functions/admin-menu.php:54
 msgid "Footer Settings"
 msgstr "Footer Einstellungen"
 
-#: functions.php:333 functions.php:334
+#: functions/admin-menu.php:59 functions/admin-menu.php:60
 msgid "Discount Settings"
 msgstr "Rabatteinstellungen"
 
-#: functions.php:366 functions.php:414
-msgid "Invoice"
-msgstr "Rechnung"
-
-#: functions.php:367
-msgid "Just an ordinary invoice. That's it! Simple as that."
-msgstr "Eine simple Rechnung, nichts mehr."
-
-#: functions.php:405
-msgid "Enable/Disable"
-msgstr "Aktivieren/Deaktivieren"
-
-#: functions.php:407
-msgid "Enable Invoice Payment"
-msgstr "Erlaube Rechnungen als Zahlungsmethode"
-
-#: functions.php:411
-msgid "Title"
-msgstr "Titel"
-
-#: functions.php:413
-msgid "This controls the title which the user sees during checkout."
-msgstr "Dies ist der Titel, der dem Benutzer bei der Kasse angezeigt wird."
-
-#: functions.php:418
-msgid "Message"
-msgstr "Nachricht"
-
-#: functions.php:420
-msgid "A message show to users while checking out."
-msgstr "Eine Nachricht die Benutzer beim Bezahlen angezeigt wird."
-
-#: functions.php:479
-msgid "The order was successfully sent."
-msgstr "Bestellvorgang erfolgreich abgeschlossen."
-
-#: functions.php:480
-msgid ""
-"Thank you! Your order is being processed. You will receive a confirmation "
-"mail within the next few minutes. You could now leave this site."
-msgstr ""
-"Vielen Dank, Ihre Bestellung ist eingegangen. Sie erhalten in den nächsten "
-"Momenten eine Bestätigungs-E-Mail. Sie können diese Seite nun verlassen."
-
-#: functions.php:481
-#, php-format
-msgid "If you would like to return to the shop, click <a href='%s'>here</a>."
-msgstr ""
-"Sollten Sie zum Shop zurückkehren wollen, klicken Sie <a href='%s'>hier</a>."
-
-#: functions.php:539 functions.php:550 functions.php:1444 functions.php:1504
-msgid "Post office box"
-msgstr "Postfach"
-
-#: functions.php:676
-msgid "Subtotal with shipping:"
-msgstr "Zwischensumme mit Versand:"
-
-#: functions.php:783 functions.php:814
+#: functions/admin-menu.php:95 functions/admin-menu.php:126
 msgid "Drop your excel file here"
 msgstr "Platzieren Sie Ihre Excel-Datei hier"
 
-#: functions.php:855
+#: functions/admin-menu.php:163
 msgid "Do It!"
 msgstr "Mach es!"
 
-#: functions.php:878
-msgid "Refreshed successfully!"
-msgstr "Aktualisierung erfolgreich!"
-
-#: functions.php:1286
+#: functions/admin-menu.php:662
 msgid "New product was successfully imported!"
 msgstr "Neues Produkt wurde erfolgreich importiert!"
 
-#: functions.php:1288
+#: functions/admin-menu.php:664
 msgid "Existing product was successfully updated!"
 msgstr "Bestehendes Produkt wurde erfolgreich aktualisiert!"
 
-#: functions.php:1293 functions.php:1411
+#: functions/admin-menu.php:669 functions/admin-menu.php:784
 msgid "This operation can only be performed by admins!"
 msgstr "Diese Operation kann nur von Admins durchgeführt werden!"
 
-#: functions.php:1405
+#: functions/admin-menu.php:778
 msgid "New reseller was successfully imported!"
 msgstr "Neue Wiederverkäufer wurden erfolgreich importiert!"
 
-#: functions.php:1407
+#: functions/admin-menu.php:780
 msgid "Existing reseller was successfully updated!"
 msgstr "Bestehender Wiederverkäufer wurde erfolgreich aktualisiert!"
 
-#: functions.php:1428 functions.php:1488
-msgid "Additional line above"
-msgstr "Zusatzzeile oben"
+#: functions/admin-menu.php:804
+msgid "Refreshed successfully!"
+msgstr "Aktualisierung erfolgreich!"
 
-#: functions.php:1436 functions.php:1496
-msgid "Description"
-msgstr "Bezeichnung"
-
-#: functions.php:1589
-#, php-format
-msgid "You need to order at least %d of %s!"
-msgstr "Sie müssen mindestens %d von %s bestellen!"
-
-#: functions.php:1645
-msgid "Invalid state!"
-msgstr "Ungültiger Kanton!"
-
-#: functions.php:1650
-msgid "Invalid phone number!"
-msgstr "Ungültige Telephonnummer!"
-
-#: functions.php:1707
-msgid "Bulk Discount"
-msgstr "Mengenrabatt"
-
-#: functions.php:1710
-msgid "Min. Amount"
-msgstr "Anzahl (ab)"
-
-#: functions.php:1710
-msgid "Price per unit"
-msgstr "Stückpreis"
-
-#: functions.php:1710
-msgid "Actions"
-msgstr "Aktionen"
-
-#: functions.php:1735
-msgid "Minimum purchase quantity"
-msgstr "Mindesbestellmenge"
-
-#: functions.php:1737
-msgid "Enter the desired minimum purchase quantity."
-msgstr "Geben Sie die Mindesbestellmenge an."
-
-#: functions/email.php:11
+#: functions/email.php:18
 msgid ""
 "Hi ###USERNAME###,\n"
 "\n"
@@ -308,7 +110,7 @@ msgstr ""
 "Ihre Hauser Feuerschutz AG \n"
 "https://shop.feuerschutz.ch"
 
-#: functions/email.php:35
+#: functions/email.php:42
 msgid ""
 "Hi ###USERNAME###,\n"
 "\n"
@@ -357,33 +159,198 @@ msgstr "Willkommen bei unserem neuen Online-Shop"
 msgid "New Online Shop"
 msgstr "Neuer Online-Shop"
 
-#: functions/rest.php:59
+#: functions/rest.php:83
 msgid "The lowest price for this product."
 msgstr "Der niedrigste Preis für dieses Produkt."
 
-#: functions/rest.php:70
+#: functions/rest.php:94
 msgid "A short description"
 msgstr "Beschreibung lesen"
 
-#: functions/rest.php:161
+#: functions/rest.php:185
 msgid "The thumbnail id of the term."
 msgstr "Die Thumbnail id der Kategorie."
 
-#: functions/rest.php:172
+#: functions/rest.php:196
 msgid "The seo description of the term."
 msgstr "Die Seo Beschreibung dieser Kategorie."
 
-#: functions/rest.php:1073
+#: functions/rest.php:1106
 msgid "Products"
 msgstr "Produkte"
 
-#: functions/rest.php:1078
+#: functions/rest.php:1111
 msgid "Product Variations"
 msgstr "Produktvariationen"
 
-#: functions/rest.php:1102
+#: functions/rest.php:1135
 msgid "Categories"
 msgstr "Kategorien"
+
+#: functions/setup.php:31
+msgid "Downloads"
+msgstr "Downloads"
+
+#: functions/setup.php:32
+msgid "Download"
+msgstr "Download"
+
+#: functions/setup.php:47
+msgctxt "Taxonomy General Name"
+msgid "Discount Groups"
+msgstr "Rabatt-Gruppen"
+
+#: functions/setup.php:48
+msgctxt "Taxonomy Singular Name"
+msgid "Discount Group"
+msgstr "Rabatt-Gruppe"
+
+#: functions/setup.php:49
+msgid "Discount Groups"
+msgstr "Rabatt-Gruppen"
+
+#: functions/setup.php:50
+msgid "All Groups"
+msgstr "Alle Gruppen"
+
+#: functions/setup.php:51
+msgid "Parent Group"
+msgstr "Übergeordnete Gruppe"
+
+#: functions/setup.php:52
+msgid "Parent Group:"
+msgstr "Übergeordnete Gruppe:"
+
+#: functions/setup.php:53
+msgid "New Group Name"
+msgstr "Neuer Gruppenname"
+
+#: functions/setup.php:54
+msgid "Add New Group"
+msgstr "Füge neue Gruppe hinzu"
+
+#: functions/setup.php:55
+msgid "Edit Group"
+msgstr "Bearbeite Gruppe"
+
+#: functions/setup.php:56
+msgid "Update Group"
+msgstr "Aktualisiere Gruppe"
+
+#: functions/setup.php:57
+msgid "View Group"
+msgstr "Betrachte Gruppe"
+
+#: functions/setup.php:58
+msgid "Separate groups with commas"
+msgstr "Trenne Gruppen mit Kommas"
+
+#: functions/setup.php:59
+msgid "Add or remove groups"
+msgstr "Füge neue Gruppen hinzu oder lösche welche"
+
+#: functions/setup.php:60
+msgid "Choose from the most used"
+msgstr "Wähle von den meist verwendeten"
+
+#: functions/setup.php:61
+msgid "Popular Groups"
+msgstr "Beliebte Gruppen"
+
+#: functions/setup.php:62
+msgid "Search Discount Groups"
+msgstr "Suche nach Rabatt-Gruppen"
+
+#: functions/setup.php:63
+msgid "Not Found"
+msgstr "Nichts gefunden"
+
+#: functions/setup.php:64
+msgid "No Groups"
+msgstr "Keine Gruppen"
+
+#: functions/setup.php:65
+msgid "Group list"
+msgstr "Gruppenliste"
+
+#: functions/setup.php:66
+msgid "Groups list navigation"
+msgstr "Gruppenliste Navigation"
+
+#: functions/setup.php:85 functions/setup.php:87
+msgid "Download Categories"
+msgstr "Download Kategorien"
+
+#: functions/setup.php:88
+msgid "Download Category"
+msgstr "Download Kategorie"
+
+#: functions/woocommerce-invoice-gateway.php:8
+#: functions/woocommerce-invoice-gateway.php:56
+msgid "Invoice"
+msgstr "Rechnung"
+
+#: functions/woocommerce-invoice-gateway.php:9
+msgid "Just an ordinary invoice. That's it! Simple as that."
+msgstr "Eine simple Rechnung, nichts mehr."
+
+#: functions/woocommerce-invoice-gateway.php:47
+msgid "Enable/Disable"
+msgstr "Aktivieren/Deaktivieren"
+
+#: functions/woocommerce-invoice-gateway.php:49
+msgid "Enable Invoice Payment"
+msgstr "Erlaube Rechnungen als Zahlungsmethode"
+
+#: functions/woocommerce-invoice-gateway.php:53
+msgid "Title"
+msgstr "Titel"
+
+#: functions/woocommerce-invoice-gateway.php:55
+msgid "This controls the title which the user sees during checkout."
+msgstr "Dies ist der Titel, der dem Benutzer bei der Kasse angezeigt wird."
+
+#: functions/woocommerce-invoice-gateway.php:60
+msgid "Message"
+msgstr "Nachricht"
+
+#: functions/woocommerce-invoice-gateway.php:62
+msgid "A message show to users while checking out."
+msgstr "Eine Nachricht die Benutzer beim Bezahlen angezeigt wird."
+
+#: functions/woocommerce.php:80 functions/woocommerce.php:140
+msgid "Additional line above"
+msgstr "Zusatzzeile oben"
+
+#: functions/woocommerce.php:88 functions/woocommerce.php:148
+msgid "Description"
+msgstr "Bezeichnung"
+
+#: functions/woocommerce.php:96 functions/woocommerce.php:156
+#: functions/woocommerce.php:192 functions/woocommerce.php:202
+msgid "Post office box"
+msgstr "Postfach"
+
+#: functions/woocommerce.php:261
+msgid "Subtotal with shipping:"
+msgstr "Zwischensumme mit Versand:"
+
+#: functions/woocommerce.php:333
+#, php-format
+msgid "You need to order at least %d of %s!"
+msgstr "Sie müssen mindestens %d von %s bestellen!"
+
+#: functions/woocommerce.php:418
+msgid "Invalid state!"
+msgstr "Ungültiger Kanton!"
+
+#: functions/woocommerce.php:424
+msgid "Invalid phone number!"
+msgstr "Ungültige Telephonnummer!"
+
+#: woocommerce/emails/customer-new-account.php:29
+msgid "the shop of the Hauser Feuerschutz AG"
+msgstr "dem Shop der Hauser Feuerschutz AG"
 
 #: woocommerce/emails/email-order-details.php:26
 #: woocommerce/emails/email-order-details.php:28
@@ -427,6 +394,41 @@ msgstr "Um Ihr Passwort zurückzusetzen, besuchen Sie folgende Adresse:"
 #: woocommerce/emails/reseller-added.php:16
 msgid "Click here to reset your password"
 msgstr "Klicken Sie hier um das Passwort zurückzusetzen"
+
+#~ msgid "The order was successfully sent."
+#~ msgstr "Bestellvorgang erfolgreich abgeschlossen."
+
+#~ msgid ""
+#~ "Thank you! Your order is being processed. You will receive a confirmation "
+#~ "mail within the next few minutes. You could now leave this site."
+#~ msgstr ""
+#~ "Vielen Dank, Ihre Bestellung ist eingegangen. Sie erhalten in den "
+#~ "nächsten Momenten eine Bestätigungs-E-Mail. Sie können diese Seite nun "
+#~ "verlassen."
+
+#~ msgid ""
+#~ "If you would like to return to the shop, click <a href='%s'>here</a>."
+#~ msgstr ""
+#~ "Sollten Sie zum Shop zurückkehren wollen, klicken Sie <a href='%s'>hier</"
+#~ "a>."
+
+#~ msgid "Bulk Discount"
+#~ msgstr "Mengenrabatt"
+
+#~ msgid "Min. Amount"
+#~ msgstr "Anzahl (ab)"
+
+#~ msgid "Price per unit"
+#~ msgstr "Stückpreis"
+
+#~ msgid "Actions"
+#~ msgstr "Aktionen"
+
+#~ msgid "Minimum purchase quantity"
+#~ msgstr "Mindesbestellmenge"
+
+#~ msgid "Enter the desired minimum purchase quantity."
+#~ msgstr "Geben Sie die Mindesbestellmenge an."
 
 #~ msgid "Error"
 #~ msgstr "Fehler"
@@ -1019,9 +1021,6 @@ msgstr "Klicken Sie hier um das Passwort zurückzusetzen"
 
 #~ msgid "Similar products"
 #~ msgstr "Ergänzende oder ähnliche Produkte"
-
-#~ msgid "Your account in the Hauser Feuerschutz AG Shop"
-#~ msgstr "Dein Account im Shop der Hauser Feuerschutz AG"
 
 #~ msgctxt "Post Type General Name"
 #~ msgid "Messages"

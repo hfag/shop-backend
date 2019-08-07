@@ -2,7 +2,7 @@
 	
 	class Hfag_Rest {
 		
-		public function Hfag_Rest(){
+		public function __construct(){
 			add_action('init', array($this, 'add_rest_support'), 25);
 			add_action('rest_api_init', array($this, 'init_routes'));
 			add_action('hfag_cache_product_json', array($this, 'cache_product_json'));
@@ -441,6 +441,8 @@
 		public function get_account_from_customer($customer){
 			$account = array();
 			
+			global $hfag_discount;
+			
 			$account["id"] = $customer->get_id();
 			$account["first_name"] = $customer->get_first_name("rest-api");
 			$account["last_name"] = $customer->get_last_name("rest-api");
@@ -460,7 +462,7 @@
 			);
 			$account["created"] = $customer->get_date_created("rest-api");
 			
-			$account["discount"] = feuerschutz_get_reseller_discount_by_user($customer->get_id());
+			$account["discount"] = $hfag_discount->get_reseller_discount_by_user($customer->get_id());
 			
 			return $account;
 		}
@@ -580,6 +582,8 @@
 		}
 		
 		public function get_product(WP_REST_Request $request){
+			global $hfag_discount;
+			
 			$productObject = get_page_by_path($request["productSlug"], OBJECT, 'product');
 			$variable = new WC_Product_Variable($productObject->ID);
 			$postRestController = new WP_REST_Posts_Controller("product");
@@ -652,7 +656,7 @@
 				));
 			}
 			
-			/*$reseller_discount = feuerschutz_get_reseller_discount_by_user();
+			/*$reseller_discount = $hfag_discount->get_reseller_discount_by_user();
 			
 			foreach($json as $key => $product){
 				if(!empty($reseller_discount[$product->id])){
@@ -745,14 +749,16 @@
 		}
 		
 		public function get_product_discount(WP_REST_Request $request){
+			global $hfag_discount;
+			
 			$productObject = get_page_by_path($request["productSlug"], OBJECT, 'product');
 			$variable = new WC_Product_Variable($productObject->ID);
 			
-			$reseller_discount_enabled = feuerschutz_reseller_discount_enabled($variable);
+			$reseller_discount_enabled = $hfag_discount->reseller_discount_enabled($variable);
 			
 			
 			if($reseller_discount_enabled){
-				$reseller_discount = feuerschutz_get_reseller_discount_by_user();
+				$reseller_discount = $hfag_discount->get_reseller_discount_by_user();
 				
 				return rest_ensure_response(
 					array(
@@ -762,11 +768,11 @@
 				);
 			}
 			
-			$bulk_discount_enabled = feuerschutz_bulk_discount_enabled($variable);
+			$bulk_discount_enabled = $hfag_discount->bulk_discount_enabled($variable);
 			
 			
 			if($bulk_discount_enabled){
-				$bulk_discount = feuerschutz_get_discount_coeffs($variable);
+				$bulk_discount = $hfag_discount->get_discount_coeffs($variable);
 				
 				return rest_ensure_response(
 					array(
@@ -785,6 +791,9 @@
 		}
 		
 		public function get_shopping_cart(WP_REST_Request $request){
+			
+			global $hfag_discount;
+			
 			$user_id = wp_validate_auth_cookie('', 'logged_in');
 			wp_set_current_user($user_id);
 			
@@ -794,12 +803,12 @@
 			foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 				$item = array();
 				
-				if(feuerschutz_reseller_discount_enabled($cart_item['data'])){
-					$cart_item['data']->set_price(feuerschutz_reseller_discount_get_price($cart_item['data']));
+				if($hfag_discount->reseller_discount_enabled($cart_item['data'])){
+					$cart_item['data']->set_price($hfag_discount->reseller_discount_get_price($cart_item['data']));
 				}else if($cart_item['data']->is_on_sale()){
 					$cart_item['data']->set_price($cart_item['data']->get_sale_price());
-				}else if(feuerschutz_bulk_discount_enabled($cart_item['data'])){
-					$cart_item['data']->set_price(feuerschutz_bulk_discount_get_price($cart_item['data'], $cart_item['quantity']));
+				}else if($hfag_discount->bulk_discount_enabled($cart_item['data'])){
+					$cart_item['data']->set_price($hfag_discount->bulk_discount_get_price($cart_item['data'], $cart_item['quantity']));
 				}
 				
 				$product = apply_filters('woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key);
@@ -916,8 +925,8 @@
 							$found = true;
 							unset($items[$key]);
 							break;
-						}else{
-							WC()->cart->set_quantity($cart_item_key, $item["quantity"]);
+						}else {
+							WC()->cart->set_quantity($cart_item_key, ceil($item["quantity"]));
 							$found = true;
 							unset($items[$key]);
 							break;	
@@ -947,6 +956,8 @@
 		}
 		
 		public function post_submit_order(WP_REST_Request $request){
+			
+			global $hfag_discount;
 			
 			$this->loadCart();
 			
@@ -1016,7 +1027,11 @@
 				$order->add_item($shipping);
 			}
 			
-			$order->set_customer_note($comments);
+			//make life a little easier
+			$order->set_customer_note(
+				$comments . 
+				($hfag_discount->check_if_reseller_discounts($user_id) ? "<br/><br/>---<br/>" . "Bestellung durch Wiederverkäufer" : "")
+			);
 			$order->save();
 			
 			$order->calculate_shipping();
@@ -1504,6 +1519,8 @@
 		}
 		
 		public function generate_product_json(){
+			global $hfag_discount;
+			
 			$simpleProducts = array();
 			
 			$products = wc_get_products(
@@ -1518,11 +1535,11 @@
 					
 					$variations = $product->get_available_variations();
 					
-					$bulk_discount_enabled = feuerschutz_bulk_discount_enabled($product);
+					$bulk_discount_enabled = $hfag_discount->bulk_discount_enabled($product);
 					$bulk_discount = array();
 					
 					if($bulk_discount_enabled){
-						$bulk_discount = feuerschutz_get_discount_coeffs($product);
+						$bulk_discount = $hfag_discount->get_discount_coeffs($product);
 					}
 					
 					$attributeMap = array_map(
@@ -1592,10 +1609,10 @@
 						"bulk" => array()
 					);
 					
-					$bulk_discount_enabled = feuerschutz_bulk_discount_enabled($product);
+					$bulk_discount_enabled = $hfag_discount->bulk_discount_enabled($product);
 					
 					if($bulk_discount_enabled){
-						$bulk_discount = feuerschutz_get_discount_coeffs($product);
+						$bulk_discount = $hfag_discount->get_discount_coeffs($product);
 						
 						$discount["bulk"] = $bulk_discount;
 					}
@@ -1657,6 +1674,6 @@
 		return false;
 	}
 	
-	$rest = new Hfag_Rest();
+	new Hfag_Rest();
 	
 ?>

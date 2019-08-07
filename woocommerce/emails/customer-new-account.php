@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php /* translators: %s Customer username */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_login ) ); ?></p>
 <?php /* translators: %1$s: Site title, %2$s: Username, %3$s: My account link */ ?>
-<p><?php printf( esc_html__( 'Thanks for creating an account on %1$s. Your username is %2$s. You can access your account area to view orders, change your password, and more at: %3$s', 'woocommerce' ), esc_html( $blogname ), '<strong>' . esc_html( $user_login ) . '</strong>', make_clickable( esc_url("https://shop.feuerschutz.ch/konto/") ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+<p><?php printf( esc_html__( 'Thanks for creating an account on %1$s. Your username is %2$s. You can access your account area to view orders, change your password, and more at: %3$s', 'woocommerce' ), __('the shop of the Hauser Feuerschutz AG'), '<strong>' . esc_html( $user_login ) . '</strong>', make_clickable( esc_url("https://shop.feuerschutz.ch/konto/") ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 
 <p><?php esc_html_e( 'We look forward to seeing you soon.', 'woocommerce' ); ?></p>
 

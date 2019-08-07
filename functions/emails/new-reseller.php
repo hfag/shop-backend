@@ -14,7 +14,7 @@ class WC_Reseller_Added extends WC_Email {
 		$this->template_html    = 'emails/reseller-added.php';
 		$this->template_plain   = 'emails/plain/reseller-added.php';
 		
-		add_action( 'feuerschutz_new_reseller_imported', array( $this, 'trigger' ), 10, 2);
+		add_action( 'hfag_new_reseller_imported', array( $this, 'trigger' ), 10, 2);
 		
 		parent::__construct();
 	}
