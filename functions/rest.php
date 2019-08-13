@@ -14,6 +14,8 @@
 			
 			add_filter('rest_pre_serve_request', array($this, "pre_serve_request"), 10, 4);
 			
+			add_filter('rest_product_cat_collection_params', array($this, "enable_product_cat_orderby"), 10, 1);
+			
 			/**
 			 * We have to tell WC that this should not be handled as a REST request.
 			 * Otherwise we can't use the product loop template contents properly.
@@ -199,6 +201,47 @@
 				)
 			));
 			
+			register_rest_field('product_cat', 'excerpt', array(
+				'get_callback' => function($term_data){
+					return get_field("excerpt", $term_data["taxonomy"] . "_" . $term_data["id"]);
+				},
+				'schema' => array(
+					'description' => __('An excerpt of content.', 'b4st'),
+					'type' => 'array',
+					'context' => array('view'),
+				)
+			));
+			
+			register_rest_field('product_cat', 'links', array(
+				'get_callback' => function($term_data){
+					$links = get_field("links", $term_data["taxonomy"] . "_" . $term_data["id"]);
+					
+					if(empty($links)){
+						return array();
+					}
+					
+					foreach($links as $key => $link){
+						$links[$key]["type"] = $link["acf_fc_layout"];
+						unset($links[$key]["acf_fc_layout"]);
+						
+						if($links[$key]["type"] == "pdf"){
+							$links[$key] = array(
+								"title" => $links[$key]["file"]["title"],
+								"url" => $links[$key]["file"]["url"],
+								"type" => $links[$key]["type"]
+							);
+						}
+					}
+					
+					return $links;
+				},
+				'schema' => array(
+					'description' => __('An excerpt of content.', 'b4st'),
+					'type' => 'array',
+					'context' => array('view'),
+				)
+			));
+			
 			$post_type_name = 'product_variation';
 			if( isset( $wp_post_types[ $post_type_name ] ) ) {
 				$wp_post_types[$post_type_name]->show_in_rest = true;
@@ -366,6 +409,11 @@
 					)
 				)
 			));
+		}
+		
+		public function enable_product_cat_orderby($params){
+			$params['orderby']['enum'][] = 'menu_order';
+			return $params;
 		}
 		
 		public function validate_address($address, $type = "billing"){
