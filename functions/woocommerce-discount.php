@@ -4,6 +4,9 @@
 		
 		public function __construct(){
 			add_action('woocommerce_before_calculate_totals', array($this, 'before_calculate_totals'), 10, 1);
+			
+			add_action('woocommerce_product_options_general_product_data', array($this, 'product_options_general_product_data'), 10);
+			add_action('woocommerce_product_after_variable_attributes', array($this, 'product_after_variable_attributes'), 10, 3);
 			add_action('woocommerce_process_product_meta', array($this, 'process_product_meta'), 10);
 			add_action('woocommerce_save_product_variation', array($this, 'save_product_variation'), 10, 1);
 		}
@@ -316,6 +319,65 @@
 				
 			}
 		
+		}
+		
+		function product_after_variable_attributes($loop, $variation_data, $variation){
+			$this->bulk_discount_field($variation->ID, '_feuerschutz_variable_bulk_discount[' . $variation->ID . ']');
+		}
+		
+		public function product_options_general_product_data(){
+	
+			global $woocommerce, $post;
+			
+			echo '<div class="options_group">';
+				woocommerce_wp_text_input( 
+					array( 
+						'id'                => '_feuerschutz_min_purchase_qty', 
+						'label'             => __( 'Minimum purchase quantity', 'b4st' ), 
+						'placeholder'       => '0', 
+						'description'       => __( 'Enter the desired minimum purchase quantity.', 'b4st' ),
+						'type'              => 'number', 
+						'custom_attributes' => array(
+							'step' 	=> '1',
+							'min'	=> '0'
+						) 
+					)
+				);
+			echo '</div>';
+			
+			echo '<div class="options_group show_if_simple hidden">';
+				$this->bulk_discount_field($post->ID, '_feuerschutz_bulk_discount');
+			echo '</div>';
+			
+		}
+		
+		public function bulk_discount_field($post_id, $name){
+			$id = "bulk-discount-" . $post_id;
+			
+			$bulk_discount = get_post_meta($post_id, '_feuerschutz_bulk_discount', true);
+			
+			if(empty($bulk_discount) || !$this->is_json($bulk_discount)){
+				$bulk_discount = "[]";
+			}
+			
+			echo "<div id='".$id."' class='bulk-discount'>";
+			
+				echo "<label>".__("Bulk Discount", 'b4st')."</label>";
+				
+				echo "<table class='bulk-discount' data-init='" . $bulk_discount . "'>";
+					echo "<thead style='text-align:left;'><tr><td></th><th>".__("Min. Amount", 'b4st')."</th><th>".__("Price per unit", 'b4st')."</th><th>".__("Actions", 'b4st')."</th></tr></thead>";
+				echo "<tbody></tbody>".
+					"<tfoot><td colspan='3'></td><td><button type='button' class='button add' style='width: 100%;'>+</button></td></tfoot>".
+					"</table>";
+				
+				woocommerce_wp_hidden_input(array( 
+					'id'    => $name, 
+					'value' => '[]'
+				));
+				
+			echo "</div>";
+			
+			echo "<script>jQuery('#".$id."').bulk_discount();</script><!-- Sorry found no better way to do this -->";
 		}
 	}
 	

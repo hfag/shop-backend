@@ -5,6 +5,12 @@
 			add_action('after_setup_theme', array($this, 'after_setup_theme'), 20);
 			add_action(	'init', array($this, 'register_post_types'), 0);
 			add_action(	'init', array($this, 'register_taxonomies'), 1);
+			
+			add_filter('upload_mimes', function($mime_types){
+				$mime_types[] = "text/csv";
+				
+				return $mime_types;
+			}, 10, 1);
 		}
 		
 		public function after_setup_theme(){

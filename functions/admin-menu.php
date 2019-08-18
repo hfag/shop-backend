@@ -7,10 +7,34 @@
 			add_filter('tiny_mce_plugins', array($this, 'modify_tiny_mce_plugins'));
 			add_action(	'admin_head', array($this, 'fix_svg_thumb_display'), 10);
 			
+			add_action('init', array($this, 'filter_user_roles') );
+			
 			//ajax actions
-			add_action('wp_ajax_import_product', array($this, 'ajax_import_product') );
+			//add_action('wp_ajax_import_product', array($this, 'ajax_import_product') );
 			add_action('wp_ajax_import_reseller', array($this, 'ajax_import_reseller') );
 			add_action('wp_ajax_refresh_taxonomy_count', array($this, 'ajax_refresh_taxonomy_count'));
+		}
+		
+		public function filter_user_roles(){
+			if (is_admin() && is_user_logged_in() && !(defined('DOING_AJAX')&& DOING_AJAX)) {
+				$user = wp_get_current_user();
+				
+				$allowed = false;
+				$roles = (array) $user->roles;
+				
+				foreach($roles as $role){
+					if(in_array($role, array("administrator", "translator"))){
+						$allowed = true;
+						break;
+					}
+				}
+				
+				if(!$allowed){
+					die(json_encode($roles) . " aren't sufficient!");
+					wp_redirect("https://shop.feuerschutz.ch");
+					exit;
+				}
+			}
 		}
 		
 		public function modify_admin_menu(){
@@ -24,6 +48,7 @@
 				'import-wc-products-from-excel',
 				array($this, 'admin_page_import_products')
 			);
+			
 			add_submenu_page(
 				'tools.php',
 				__('Import Resellers from Excel', 'b4st'),
@@ -88,9 +113,6 @@
 			echo "<div class='wrap'>";
 				echo "<h1>" . __('Import Products from Excel','b4st') . "</h1>";
 		
-				//Sorry not sorry
-				echo "<script src='" . get_template_directory_uri() . '/bower_components/js-xlsx/dist/xlsx.full.min.js' . "' type='text/javascript'></script>";
-		
 				echo "<div id='drop-excel' style='width:100%;border:2px #aaa dashed;margin-top:20px;padding:135px 0;text-align:center;font-size:25px;'>";
 					echo __("Drop your excel file here", "b4st");
 				echo "</div>";
@@ -100,17 +122,15 @@
 				foreach($options as $option){
 					echo "<p>".$option.": " . ini_get($option) . "</p>";
 				}
-				
-				echo "<form action='/wp-admin/admin-ajax.php' method='POST' target='_blank'>";
-					echo "<input type='hidden' name='action' value='refresh_variable_product_min_max'>";
-					echo "<input type='submit' value='Refresh min/max'>";
-				echo "</form>";
 		
 				echo "<div id='log-filename' style='padding-top:20px;'></div>";
-		
-				echo "<div id='log-ajax' style='padding-top:20px;'></div>";
-		
-				echo "<script src='" . get_template_directory_uri() . '/js/min/excel-json-product.min.js' . "' type='text/javascript'></script>";
+				echo "<progress id='progress' value='0' max='1' style='width:100%;'></progress>";
+				echo "<a id='download-json' style='display: none;'>Download JSON</a>";
+				echo "<a id='download-csv' style='display: none;'>Download CSV</a>";
+				
+				//Sorry not sorry
+				echo "<script src='" . get_template_directory_uri() . '/node_modules/xlsx/dist/xlsx.full.min.js' . "' type='text/javascript'></script>";
+				echo "<script src='" . get_template_directory_uri() . '/js/excel-json-product.js' . "' type='text/javascript'></script>";
 		
 			echo "</div>";
 		}
@@ -118,9 +138,6 @@
 		public function admin_page_import_resellers(){
 			echo "<div class='wrap'>";
 				echo "<h1>" . __('Import Resellers from Excel','b4st') . "</h1>";
-		
-				//The dirty way because I don't want to create a big overhad
-				echo "<script src='" . get_template_directory_uri() . '/bower_components/js-xlsx/dist/xlsx.full.min.js' . "' type='text/javascript'></script>";
 		
 				echo "<div id='drop-excel' style='width:100%;border:2px #aaa dashed;margin-top:20px;padding:135px 0;text-align:center;font-size:25px;'>";
 					echo __("Drop your excel file here", "b4st");
@@ -139,8 +156,8 @@
 				echo "<div id='log-ajax' style='padding-top:20px;'></div>";
 				
 				//$this->import_reseller_discount(-1, array());
-		
-				echo "<script src='" . get_template_directory_uri() . '/js/min/excel-json-reseller.min.js' . "' type='text/javascript'></script>";
+				echo "<script src='" . get_template_directory_uri() . '/node_modules/xlsx/dist/xlsx.full.min.js' . "' type='text/javascript'></script>";
+				echo "<script src='" . get_template_directory_uri() . '/js/excel-json-reseller.min.js' . "' type='text/javascript'></script>";
 		
 			echo "</div>";
 		}
@@ -432,12 +449,6 @@
 					
 					wp_set_object_terms($post_id, $terms, 'product_discount', false /* Override */);
 					wp_update_term_count_now($terms, 'product_discount');
-				}
-				
-				if(!empty($_POST['min_purchase_qty'])){
-					if($_POST['min_purchase_qty'] > 1){
-						update_post_meta($post_id, '_feuerschutz_min_purchase_qty', intval($_POST['min_purchase_qty']));
-					}
 				}
 				
 				//bulk discount is a little harder :/

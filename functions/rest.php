@@ -88,6 +88,17 @@
 				)
 			));
 			
+			register_rest_field('product', 'minOrderQuantity', array(
+				'get_callback' => function($product_data){
+					return get_post_meta($product_data["id"], "_feuerschutz_min_order_quantity", true) || 1;
+				},
+				'schema' => array(
+					'description' => __('The mininum order quantity for this product.', 'b4st'),
+					'type' => 'array',
+					'context' => array('view'),
+				)
+			));
+			
 			register_rest_field('post', 'description', array(
 				'get_callback' => function($post_data){
 					return get_field("description", $post_data->ID);
@@ -420,6 +431,7 @@
 			$countries_obj = new WC_Countries();
 			$country_map = $countries_obj->get_allowed_countries();
 			
+			
 			$errors = array();
 			$validatedAddress = array();
 			
@@ -463,13 +475,21 @@
 					}
 					
 					$state_map = $countries_obj->get_states($address["country"]);
+					foreach($state_map as $key => $state){
+						$state_map[$key] = urldecode($state_map[$key]);
+					}
+					
+					$flipped_state = array_flip($state_map);
 					
 					if(!$state_map){
 						$validatedAddress[$required_key] = "-";
 					}else if(in_array($address[$required_key], array_keys($state_map))){
 						$validatedAddress[$required_key] = $state_map[$address[$required_key]];
+					}else if(in_array($address[$required_key], array_keys($flipped_state))){
+						$validatedAddress[$required_key] = $address[$required_key];
 					}else{
-						$errors[] = "The $type $required_key has to be one of the followings: " . implode(",", array_keys($state_map));
+						
+						$errors[] = "The $type $required_key has to be one of the followings: " . implode(",", array_keys($state_map)) . " but is '" . $validatedAddress[$required_key]."'";
 					}
 				}else{
 					$validatedAddress[$required_key] = $address[$required_key];
@@ -770,7 +790,8 @@
 					}
 					
 					if($data["is_taxonomy"]){
-						$data["name"] = get_taxonomy($taxonomy)->labels->singular_name;
+						
+						$data["name"] = get_taxonomy( $taxonomy )->labels->singular_name;
 						
 						$data["options"] = array_map(
 							function($termId) use ($taxonomy){

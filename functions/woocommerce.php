@@ -55,6 +55,14 @@
 			//some products have a minimum order quantity
 			add_action('woocommerce_quantity_input_min', array($this, 'quantity_input_min'), 10, 2);
 			
+			//add custom csv importer functionality
+			add_filter('woocommerce_csv_product_import_mapping_options', array($this, 'add_importer_columns'));
+			add_filter('woocommerce_csv_product_import_mapping_default_columns', array($this, 'add_importer_column_mapping'));
+			add_filter('woocommerce_product_import_inserted_product_object', array($this, 'process_importer_columns'), 10, 2 );
+			add_filter('woocommerce_get_product_id_by_sku', array($this, 'get_product_id_by_sku_and_language'), 10, 2);
+			
+			add_filter('woocommerce_product_import_before_process_item', array($this, "product_import_before_process_item"), 10, 1);
+			
 		}
 		
 		public function remove_product_description($columns){
@@ -321,19 +329,6 @@
 			if(isset($_POST['shipping_phone']) && isset($_POST['ship_to_different_address']) && $_POST['ship_to_different_address'] == 1){
 				$this->validate_phone_number($_POST['shipping_phone']);
 			}
-			
-			
-			
-			//Check for minimum purchase qty
-			foreach(WC()->cart->cart_contents as $key => $item){
-				$min_qty = intval(get_post_meta($item['product_id'], '_feuerschutz_min_purchase_qty', true));
-			
-				if(!empty($min_qty) && $min_qty > 1){
-					if($item['quantity'] < $min_qty){
-						wc_add_notice(sprintf(__( 'You need to order at least %d of %s!', 'b4st' ), $min_qty, get_the_title($item['product_id'])), 'error' );
-					}
-				}
-			}
 		}
 		
 		public function payment_gateways($methods){
@@ -414,7 +409,7 @@
 		}
 		
 		public function validate_state($state, $states){
-			if(! in_array($state, $states)){
+			if(!in_array(strtoupper($state), $states)){
 				wc_add_notice( __( 'Invalid state!', 'b4st' ), 'error' );
 			}
 		}
@@ -423,6 +418,85 @@
 			if(! preg_match("/[0-9]{3}\ [0-9]{3}\ [0-9]{2}\ [0-9]{2}/", $number)){
 				wc_add_notice( __( 'Invalid phone number!', 'b4st' ), 'error' );
 			}
+		}
+		
+		public function add_importer_columns( $options ) {
+			$options['discount_groups'] = 'Discount Groups';
+			//$options['minimum_quantity'] = 'Minimum Quantity';
+			return $options;
+		}
+		
+		public function add_importer_column_mapping( $columns ) {
+			
+			// potential column name => column slug
+			$columns['Discount Groups'] = 'discount_groups';
+			$columns['Discount Group'] = 'discount_groups';
+			$columns['discount groups'] = 'discount_groups';
+			$columns['discount group'] = 'discount_groups';
+			
+		
+			return $columns;
+		}
+		
+		public function process_importer_columns($object, $data){
+			
+			$product_id = $object->get_id();
+			
+			if (!empty($data['discount_groups'])){
+				$discount_groups = explode(",", $data["discount_groups"]);
+				
+				$terms = array();
+					
+				foreach($discount_groups as $discount_group){
+					
+					$term = get_term_by('name', $discount_group, 'product_discount');
+					
+					if($term === false){
+						$term = wp_insert_term(trim($discount_group), 'product_discount');
+						
+						if(!is_wp_error($term)){
+							$terms[] = (int) $term->term_id;
+						}
+					}else{
+						$terms[] = (int) $term->term_id;
+					}
+				}
+				
+				wp_set_object_terms($product_id, $terms, 'product_discount', false /* Override */);
+				wp_update_term_count_now($terms, 'product_discount');
+				
+			}
+		
+			return $object;
+		}
+		
+		/*
+			- https://github.com/woocommerce/woocommerce/blob/737f6af5e8af27ae768d087e84c0303d8059281a/includes/admin/class-wc-admin-importers.php
+			- https://github.com/woocommerce/woocommerce/blob/55692cba870690145afc810227ef0b1ca33fc5c3/includes/admin/importers/class-wc-product-csv-importer-controller.php#L22
+			- https://github.com/woocommerce/woocommerce/blob/22726bd74df86cf2fce823e6d13b855318eb169f/includes/import/class-wc-product-csv-importer.php#L27
+			- https://github.com/woocommerce/woocommerce/blob/55692cba870690145afc810227ef0b1ca33fc5c3/includes/import/abstract-wc-product-importer.php#L23
+			- https://github.com/woocommerce/woocommerce/search?q=%22function+import%22&unscoped_q=%22function+import%22
+			- https://docs.woocommerce.com/wc-apidocs/source-function-wc_get_product_id_by_sku.html#604-614
+			- https://docs.woocommerce.com/wc-apidocs/source-class-WC_Product_Data_Store_CPT.html#956-984
+			- https://wpml.org/forums/topic/wc_get_product_id_by_sku-not-returning-the-right-product-on-current-language/
+			- https://wpml.org/wpml-hook/wpml_object_id/
+		*/
+		
+		public function get_product_id_by_sku_and_language($id, $sku){
+			return apply_filters( 'wpml_object_id', $id, 'product', false, "de"); //for now hardcode german as it could cause troubles otherwise
+		}
+		
+		//https://github.com/woocommerce/woocommerce/blob/55692cba870690145afc810227ef0b1ca33fc5c3/includes/import/abstract-wc-product-importer.php#L250
+		public function product_import_before_process_item($data){
+			//modify the data before importing e.g. prevent inserting an empty name!
+			
+			foreach($data as $key => $value){
+				if(isset($data[$key]) && empty($value)){
+					unset($data[$key]);
+				}
+			}
+			
+			return $data;
 		}
 		
 	}
