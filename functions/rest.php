@@ -2,6 +2,8 @@
 	
 	class Hfag_Rest {
 		
+		public $languages = array("de", "fr");
+		
 		public function __construct(){
 			add_action('init', array($this, 'add_rest_support'), 25);
 			add_action('rest_api_init', array($this, 'init_routes'));
@@ -457,11 +459,12 @@
 			}
 			
 			foreach($required_keys as $required_key){
-				if(empty($address[$required_key])){
-					$errors[] = "The $type $required_key is required!";
-				}
-				
 				if($required_key === "country"){
+					
+					if(empty($address[$required_key])){
+						$errors[] = "The $type $required_key is required!";
+					}
+					
 					if(in_array($address[$required_key], array_keys($country_map))){
 						$validatedAddress[$required_key] = $country_map[$address[$required_key]];
 					}else{
@@ -470,11 +473,21 @@
 					
 				}else if($required_key === "state"){
 					
+					$state_map = $countries_obj->get_states($address["country"]);
+					
+					if(count(array_keys($state_map)) == 0){
+						continue; //nothing to validate
+					}
+					
 					if(empty($address["country"])){
 						$errors[] = "The $type country is required!";
 					}
 					
-					$state_map = $countries_obj->get_states($address["country"]);
+					if(empty($address["state"])){
+						$errors[] = "The $type $required_key has to be one of the following: " . implode(",", array_keys($state_map)) . " but is missing!";;
+					}
+					
+					
 					foreach($state_map as $key => $state){
 						$state_map[$key] = urldecode($state_map[$key]);
 					}
@@ -492,6 +505,10 @@
 						$errors[] = "The $type $required_key has to be one of the followings: " . implode(",", array_keys($state_map)) . " but is '" . $validatedAddress[$required_key]."'";
 					}
 				}else{
+					if(empty($address[$required_key])){
+						$errors[] = "The $type $required_key is required!";
+					}
+					
 					$validatedAddress[$required_key] = $address[$required_key];
 				}
 				
@@ -516,17 +533,33 @@
 			$account["last_name"] = $customer->get_last_name("rest-api");
 			$account["email"] = $customer->get_email("rest-api");
 			$account["role"] = $customer->get_role("rest-api");
-			$account["billing"] = apply_filters(
-				'woocommerce_my_account_my_address_formatted_address',
-				$customer->get_billing("rest-api"),
-				$customer->get_id(),
-				"billing"
+			$account["billing"] = array(
+				"additional_line_above" => get_user_meta($customer->get_id(), "billing_additional_line_above", true),
+				"company" => $customer->get_billing_company(),
+				"first_name" => $customer->get_billing_first_name(),
+				"last_name" => $customer->get_billing_last_name(),
+				/*"description" => get_user_meta($customer->get_id(), "billing_description", true),*/
+				"address_1" => $customer->get_billing_address(),
+				"post_office_box" => get_user_meta($customer->get_id(), "billing_post_office_box", true),
+				"postcode" => $customer->get_billing_postcode(),
+				"city" => $customer->get_billing_city(),
+				"state" => $customer->get_billing_state(),
+				"country" => $customer->get_billing_country(),
+				"email" => $customer->get_billing_email(),
+				"phone" => $customer->get_billing_phone()
 			);
-			$account["shipping"] = apply_filters(
-				'woocommerce_my_account_my_address_formatted_address',
-				$customer->get_shipping("rest-api"),
-				$customer->get_id(),
-				"shipping"
+			$account["shipping"] = array(
+				"additional_line_above" => get_user_meta($customer->get_id(), "shipping_additional_line_above", true),
+				"company" => $customer->get_shipping_company(),
+				"first_name" => $customer->get_shipping_first_name(),
+				"last_name" => $customer->get_shipping_last_name(),
+				/*"description" => get_user_meta($customer->get_id(), "shipping_description", true),*/
+				"address_1" => $customer->get_shipping_address(),
+				"post_office_box" => get_user_meta($customer->get_id(), "shipping_post_office_box", true),
+				"postcode" => $customer->get_shipping_postcode(),
+				"city" => $customer->get_shipping_city(),
+				"state" => $customer->get_shipping_state(),
+				"country" => $customer->get_shipping_country()
 			);
 			$account["created"] = $customer->get_date_created("rest-api");
 			
@@ -653,20 +686,29 @@
 			global $hfag_discount;
 			
 			$productObject = get_page_by_path($request["productSlug"], OBJECT, 'product');
-			$variable = new WC_Product_Variable($productObject->ID);
+			
+			$_product = wc_get_product($productObject->ID);
+			$variations = array();
+			$attributes = array();
+			
+			if($_product->is_type("variable")){
+				$variations = $this->get_product_variations($request)->data;
+				$attributes = $this->get_product_attributes($request)->data;
+			}
+			
 			$postRestController = new WP_REST_Posts_Controller("product");
 			
-			$variations = $this->get_product_variations($request)->data;
-			$attributes = $this->get_product_attributes($request)->data;
+			
 			$discount = $this->get_product_discount($request)->data;
 			$product = $postRestController->prepare_item_for_response(get_post($productObject->ID), $request)->data;
 			$product['discount'] = $discount;
-			$product['sku'] = $variable->get_sku();
+			$product['sku'] = $_product->get_sku();
+			$product['price'] = $_product->get_price();
 			
 			$fields = get_field("fields", $productObject->ID);
 			$product['fields'] = $fields ? $fields : array();
-			$product['galleryImageIds'] = $variable->get_gallery_image_ids();
-			$product['crossSellIds'] = $variable->get_cross_sell_ids();
+			$product['galleryImageIds'] = $_product->get_gallery_image_ids();
+			$product['crossSellIds'] = $_product->get_cross_sell_ids();
 			
 			$description = get_field("description", $productObject->ID);
 			$product['description'] = $description ? $description : "";
@@ -691,7 +733,8 @@
 				array(
 					"product" => $product,
 					"variations" => $variations,
-					"attributes" => $attributes
+					"attributes" => $attributes,
+					"type" => $_product->get_type()
 				)
 			);
 		}
@@ -712,12 +755,21 @@
 			
 			//wp_set_current_user($user_id);
 			//$this->cache_product_json();
-			$json = json_decode(file_get_contents(get_template_directory() . "/cache/products.json"));
+			
+			$language = apply_filters( 'wpml_current_language', "de");
+			
+			$filename = "products";
+			
+			if($language !== "de"){
+				$filename .= "-" . $language;
+			}
+			
+			$json = json_decode(file_get_contents(get_template_directory() . "/cache/" . $filename . ".json"));
 			
 			if(empty($json)){
 				return rest_ensure_response(array(
 					"errors" => array(
-						"Data not cached!"
+						"Data not cached! ($filename is missing)"
 					),
 					"products" => null,
 					"success" => false
@@ -791,7 +843,8 @@
 					
 					if($data["is_taxonomy"]){
 						
-						$data["name"] = get_taxonomy( $taxonomy )->labels->singular_name;
+						$name = get_taxonomy( $taxonomy )->labels->singular_name;
+						$data["name"] = apply_filters('wpml_translate_single_string', $name, "WordPress", "taxonomy singular name: " . $name);
 						
 						$data["options"] = array_map(
 							function($termId) use ($taxonomy){
@@ -1146,7 +1199,7 @@
 				$product = wc_get_product($post->ID);
 				
 				if($post->post_type === "product"){
-					$variation_count = count($product->get_available_variations());
+					$variation_count = $product->is_type( 'variable' ) ? count($product->get_available_variations()) : 1;
 					
 					$products[] = array(
 						"id" => $post->ID,
@@ -1587,7 +1640,7 @@
 			return $served;
 		}
 		
-		public function generate_product_json(){
+		public function generate_product_json($language = "de"){
 			global $hfag_discount;
 			
 			$simpleProducts = array();
@@ -1711,10 +1764,19 @@
 		}
 		
 		public function cache_product_json(){
-			set_time_limit(120);
+			set_time_limit(120 * count($this->languages));
 			
-			$json = $this->generate_product_json();
-			file_put_contents(get_template_directory() . "/cache/products.json", json_encode($json));
+			foreach($this->languages as $language){
+				$json = $this->generate_product_json($language);
+				
+				$filename = "products";
+				
+				if($language !== "de"){
+					$filename .= "-" . $language;
+				}
+				
+				file_put_contents(get_template_directory() . "/cache/" . $filename . ".json", json_encode($json));
+			}
 		}
 	}
 	

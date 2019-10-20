@@ -15,9 +15,6 @@
 			
 			/* Start address format */
 			
-			add_filter('woocommerce_billing_fields' , array($this, 'billing_fields'), 100, 1);
-			add_filter('woocommerce_shipping_fields' , array($this, 'shipping_fields'), 100, 1);
-			
 			//override localization address format to include custom fields
 			add_filter('woocommerce_localisation_address_formats', array($this, 'localisation_address_formats'), 100, 1);
 			//add custom fields to the address
@@ -72,124 +69,6 @@
 		
 		public function strip_shipping_label($label){
 			return explode(": ", $label)[1]; //strip everything but the price; there's only one shipping method
-		}
-		
-		public function billing_fields($fields){
-			if(isset($fields['billing_phone'])){
-				$fields['billing_phone']['placeholder']		= '000 000 00 00';
-			}
-			if(isset($fields['billing_state'])){
-				$fields['billing_state']['required'] 		= true;
-				//Woocommerce bug, currently not showing the asteriks
-				//$fields['billing_state']['class'][]			= 'autocomplete-state';
-			}
-			
-			$fields['billing_additional_line_above'] = array(
-				'label'				=> __('Additional line above', 'b4st'),
-				'placeholder'		=> '',
-				'required'			=> false,
-				'class'				=> array(''),
-				'clear'				=> true
-			);
-			
-			$fields['billing_description'] = array(
-				'label'				=> __('Description', 'b4st'),
-				'placeholder'		=> '',
-				'required'			=> false,
-				'class'				=> array(''),
-				'clear'				=> true
-			);
-			
-			$fields['billing_post_office_box'] = array(
-				'label'				=> __('Post office box', 'b4st'),
-				'placeholder'		=> '',
-				'required'			=> false,
-				'class'				=> array(''),
-				'clear'				=> true
-			);
-			
-			$order = array(
-				"billing_additional_line_above",
-				"billing_company",
-				"billing_first_name",
-				"billing_last_name",
-				"billing_description",
-				"billing_address_1",
-				/*"billing_address_2",*/
-				"billing_post_office_box",
-				"billing_postcode",
-				"billing_city",
-				"billing_state",
-				"billing_country",
-				"billing_email",
-				"billing_phone"
-		    );
-		    
-		    $ordered_fields = array();
-		    
-		    foreach($order as $field){
-		        $ordered_fields[$field] = $fields[$field];
-		    }
-			
-			return $ordered_fields;
-		}
-		
-		public function shipping_fields($fields){
-			if(isset($fields['shipping_phone'])){
-				$fields['shipping_phone']['placeholder']		= '000 000 00 00';
-			}
-			if(isset($fields['shipping_state'])){
-				$fields['shipping_state']['required'] 		= true;
-				//Woocommerce bug, currently not showing the asteriks
-				//$fields['shipping_state']['class'][]			= 'autocomplete-state';
-			}
-			
-			$fields['shipping_additional_line_above'] = array(
-				'label'				=> __('Additional line above', 'b4st'),
-				'placeholder'		=> '',
-				'required'			=> false,
-				'class'				=> array(''),
-				'clear'				=> true
-			);
-			
-			$fields['shipping_description'] = array(
-				'label'				=> __('Description', 'b4st'),
-				'placeholder'		=> '',
-				'required'			=> false,
-				'class'				=> array(''),
-				'clear'				=> true
-			);
-			
-			$fields['shipping_post_office_box'] = array(
-				'label'				=> __('Post office box', 'b4st'),
-				'placeholder'		=> '',
-				'required'			=> false,
-				'class'				=> array(''),
-				'clear'				=> true
-			);
-			
-			$order = array(
-				"shipping_additional_line_above",
-				"shipping_company",
-				"shipping_first_name",
-				"shipping_last_name",
-				"shipping_description",
-				"shipping_address_1",
-				/*"shipping_address_2",*/
-				"shipping_post_office_box",
-				"shipping_postcode",
-				"shipping_city",
-				"shipping_state",
-				"shipping_country"
-		    );
-		    
-		    $ordered_fields = array();
-		    
-		    foreach($order as $field){
-		        $ordered_fields[$field] = $fields[$field];
-		    }
-			
-			return $ordered_fields;
 		}
 		
 		public function order_formatted_billing_address($address, $order){
