@@ -3,6 +3,7 @@
 	class Hfag_Shortcodes {
 		
 		public function __construct(){
+			remove_shortcode('gallery', 'gallery_shortcode');//should be handled in the frontend.. 
 			add_shortcode( 'downloads', array($this, 'downloads') );
 		}
 		
