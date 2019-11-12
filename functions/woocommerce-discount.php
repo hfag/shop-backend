@@ -19,26 +19,27 @@
 		public function reseller_discount_enabled($product){
 	
 			$discount = $this->get_reseller_discount_by_user();
+			$product_id = -1;
 			
 			if(is_a($product, "WC_Product_Variation")){
-				
-				return isset($discount[$product->get_parent_id()]);
-				
+				$product_id = apply_filters( 'wpml_object_id', $product->get_parent_id(), 'product', false, "de");
 			}else{
-				
-				return isset($discount[$product->get_id()]);
+				$product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product', false, "de");
 			}
+			
+			return isset($discount[$product_id]);
 		}
 		
 		public function reseller_discount_get_price($product){
 			
-			$discountByUser = $this->get_reseller_discount_by_user();
-			
 			//is sometimes executed two times in a row
+			$discountByUser = $this->get_reseller_discount_by_user();
 			
 			if(is_a($product, "WC_Product_Variation")){
 				
-				$product	= new WC_Product_Variation($product->get_id());
+				$product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product_variation', false, "de");
+				
+				$product	= new WC_Product_Variation($product_id);
 				$price		= $product->get_price();
 				
 				$discount = floatval($discountByUser[$product->get_parent_id()]);
@@ -47,7 +48,9 @@
 				
 			}else{
 				
-				$product	= wc_get_product( $product->get_id() );
+				$product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product', false, "de");
+				
+				$product	= wc_get_product($product_id);
 				$price		= $product->get_price();
 				
 				$discount = floatval($discountByUser[$product->get_id()]);
@@ -59,18 +62,28 @@
 		
 		
 		public function bulk_discount_enabled($product){
+			//always get the discount from the german products
 	
 			if(is_a($product, "WC_Product_Variation")){
-				$discount = get_post_meta($product->get_id(), '_feuerschutz_bulk_discount', true);
+				
+				$product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product', false, "de");
+				
+				$discount = get_post_meta($product_id, '_feuerschutz_bulk_discount', true);
 				
 				return empty($discount) ? false : ($discount != "[]");
 			}else if($product->is_type('simple')){
-				$discount = get_post_meta($product->get_id(), '_feuerschutz_bulk_discount', true);
+				
+				$product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product_variation', false, "de");
+				
+				$discount = get_post_meta($product_id, '_feuerschutz_bulk_discount', true);
 				
 				return empty($discount) ? false : ($discount != "[]");
 				
 			}else if($product->is_type('variable')){
-				$enabled = get_post_meta($product->get_id(), '_feuerschutz_variable_bulk_discount_enabled', true);
+				
+				$product_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product', false, "de");
+				
+				$enabled = get_post_meta($product_id, '_feuerschutz_variable_bulk_discount_enabled', true);
 				
 				return empty($enabled) ? false : ($enabled == '1');
 			}
@@ -78,10 +91,16 @@
 		
 		public function bulk_discount_get_price($product, $quantity = 1){
 			
+			//always get the discount from the german products
 			$product_id = $product->get_id();
+			
 			if(is_a($product, "WC_Product_Variation")){
-				$product_id = $product->get_id();
+				$product_id = apply_filters( 'wpml_object_id', $product_id, 'product_variation', false, "de");
+			}else{
+				$product_id = apply_filters( 'wpml_object_id', $product_id, 'product', false, "de");
 			}
+			
+			$product = wc_get_product($product_id);
 			
 			$discounts = $this->remove_bom(get_post_meta($product_id, '_feuerschutz_bulk_discount', true));
 			$discount_price = $product->get_price();
@@ -101,75 +120,79 @@
 			return $discount_price;
 		}
 		
-		public function get_reseller_discount(){
+		public function get_reseller_discount_by_user($user_id = null){
 			global $feuerschutz_reseller_discount;
 			
-			if(!empty($feuerschutz_reseller_discount)){
-				return $feuerschutz_reseller_discount;
+			if($user_id === null){
+				$user_id = get_current_user_id();
 			}
 			
+			if(!$this->check_if_reseller_discounts($user_id)){
+				return array();	
+			}
 			
-			$discount_rules = get_field('discount_rules', 'option');
+			if(empty($feuerschutz_reseller_discount)){
+				$feuerschutz_reseller_discount = array();
+			}
 			
-			$user_discount = array();
+			if(!empty($feuerschutz_reseller_discount[$user_id])){
+				return $feuerschutz_reseller_discount[$user_id];
+			}
 			
-			if(have_rows('discount_rules', 'option')){
-				while(have_rows('discount_rules', 'option') ){
-					the_row();
+			//use german values
+			add_filter('acf/settings/current_language', '__return_false');
+				
+			while(have_rows('discount_rules', 'option') ){
+				the_row();
+				
+				$layout			= get_row_layout();
+				
+				$users_ids		= array();
+				$product_ids	= array();
+				
+				$discount		= get_sub_field('discount');
+				
+				if($layout === 'products_single_users'){
 					
-					$layout			= get_row_layout();
+					$product_ids	= get_sub_field('products');
+					$users			= get_sub_field('users');
 					
-					$users_ids		= array();
-					$product_ids	= array();
-					
-					$discount		= get_sub_field('discount');
-					
-					if($layout === 'products_single_users'){
-						
-						$product_ids	= get_sub_field('products');
-						$users			= get_sub_field('users');
-						
-						foreach($users as $user){
-							$user_ids[] = $user['ID'];
-						}
-						
-						
-					}else if($layout === 'products_user_groups'){
-						
-						$product_ids	= get_sub_field('products');
-						$user_ids		= get_objects_in_term(get_sub_field('users'),		'user_discount');
-						
-					}else if($layout === 'categories_single_users'){
-						
-						$product_ids	= get_objects_in_term(get_sub_field('categories'),	'product_discount');
-						$users			= get_sub_field('users');
-						
-						foreach($users as $user){
-							$user_ids[] = $user['ID'];
-						}
-						
-					}else if($layout === 'categories_user_groups'){
-						$product_ids	= get_objects_in_term(get_sub_field('categories'),	'product_discount');
-						$user_ids		= get_objects_in_term(get_sub_field('users'),		'user_discount');
-						
+					foreach($users as $user){
+						$user_ids[] = $user['ID'];
 					}
 					
-					foreach($user_ids as $user_id){
-						
-						foreach($product_ids as $product_id){
-							$user_discount[$user_id][$product_id]	= $discount;
-						}
-						
+					
+				}else if($layout === 'products_user_groups'){
+					
+					$product_ids	= get_sub_field('products');
+					$user_ids		= get_objects_in_term(get_sub_field('users'),		'user_discount');
+					
+				}else if($layout === 'categories_single_users'){
+					
+					$product_ids	= get_objects_in_term(get_sub_field('categories'),	'product_discount');
+					$users			= get_sub_field('users');
+					
+					foreach($users as $user){
+						$user_ids[] = $user['ID'];
 					}
+					
+				}else if($layout === 'categories_user_groups'){
+					$product_ids	= get_objects_in_term(get_sub_field('categories'),	'product_discount');
+					$user_ids		= get_objects_in_term(get_sub_field('users'),		'user_discount');
 					
 				}
 				
+				if(in_array($user_id, $user_ids)){
+					foreach($product_ids as $product_id){
+						$feuerschutz_reseller_discount[$user_id][$product_id]	= $discount;
+					}	
+				}
 				
 			}
+			//reset language
+			remove_filter('acf/settings/current_language', '__return_false');
 			
-			$feuerschutz_reseller_discount = $user_discount;
-			
-			return $feuerschutz_reseller_discount;	
+			return isset($feuerschutz_reseller_discount[$user_id]) ? $feuerschutz_reseller_discount[$user_id] : array();
 		}
 		
 		public function check_if_reseller_discounts($user_id){
@@ -185,23 +208,6 @@
 			}
 			
 			return false;
-		}
-		
-		public function get_reseller_discount_by_user($user_id = null){
-			if($user_id === null){
-				$user_id = get_current_user_id();
-			}
-			
-			//var_dump("discount by user", $user_id, $this->check_if_reseller_discounts($user_id) ? "ye" : "no");
-			
-			if($this->check_if_reseller_discounts($user_id)){
-				$discount = $this->get_reseller_discount();
-				//var_dump($discount[$user_id]);
-			
-				return isset($discount[$user_id]) ? $discount[$user_id] : array();
-			}else{
-				return array();
-			}
 		}
 		
 		public function before_calculate_totals($cart){
@@ -223,7 +229,6 @@
 					$cart_item['data']->set_price($cart_item['data']->get_sale_price());
 				}else if($this->bulk_discount_enabled($cart_item['data'])){
 					$cart_item['data']->set_price($this->bulk_discount_get_price($cart_item['data'], $cart_item['quantity']));
-					
 				}
 			}
 		}
@@ -289,7 +294,9 @@
 		public function get_discount_coeffs($product){
 			//return array();
 			if($product->is_type('simple')){
-				$discount = $this->remove_bom(get_post_meta($product->get_id(), '_feuerschutz_bulk_discount', true));
+				
+				$german_id = apply_filters( 'wpml_object_id', $product->get_id(), 'product', false, "de");
+				$discount = $this->remove_bom(get_post_meta($german_id, '_feuerschutz_bulk_discount', true));
 				
 				if(empty($discount) || !$this->is_json($discount)){
 					return array();
@@ -306,7 +313,10 @@
 				
 				$variations = $product->get_available_variations();
 				foreach($variations as $variation){
-					$discount_tmp = $this->remove_bom(get_post_meta($variation['variation_id'], '_feuerschutz_bulk_discount', true));
+					//get the discount of the german equivalent
+					$german_id = apply_filters( 'wpml_object_id', $variation['variation_id'], 'product_variation', false, "de");
+					
+					$discount_tmp = $this->remove_bom(get_post_meta($german_id, '_feuerschutz_bulk_discount', true));
 					
 					if(empty($discount_tmp) || !$this->is_json($discount_tmp)){
 						$discount_tmp = "[]";
