@@ -178,12 +178,13 @@
 				
 				unset($data->data["link"]);
 				unset($data->data["_links"]);
+				unset($data->data["description"]);
 				
-				remove_filter('the_content', 'prepend_attachment');
+				/*remove_filter('the_content', 'prepend_attachment');
 				$data->data["description"] = apply_filters(
 					'the_content',
 					$data->data["description"]
-				);
+				);*/
 				
 				return $data;
 			}, 100, 3);
@@ -686,6 +687,10 @@
 			global $hfag_discount;
 			
 			$productObject = get_page_by_path($request["productSlug"], OBJECT, 'product');
+			
+			if($productObject === NULL){
+				die('{"error": "Product not found"}');
+			}
 			
 			$_product = wc_get_product($productObject->ID);
 			$variations = array();

@@ -7,7 +7,7 @@
 		"uuidString": "D6AF5CA7-548F-45A8-8E2A-10B6034C1A8B"
 		}
 	],
-"creatorBuild": "31491",
+"creatorBuild": "31934",
 "files": {
 	"/.gitattributes": {
 		"cB": 0,
@@ -626,6 +626,22 @@
 		"hM": 0,
 		"oA": 2,
 		"oAP": "/lang/de_DE_formal.po",
+		"oF": 0
+		},
+	"/lang/fr_FR.mo": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/lang/fr_FR.mo",
+		"oF": 0
+		},
+	"/lang/fr_FR.po": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/lang/fr_FR.po",
 		"oF": 0
 		},
 	"/node_modules": {
@@ -2141,12 +2157,44 @@
 		"oF": 0,
 		"oS": 0
 		},
+	"/woocommerce/emails/customer-completed-order.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/customer-completed-order.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/customer-invoice.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/customer-invoice.php",
+		"oF": 0
+		},
 	"/woocommerce/emails/customer-new-account.php": {
 		"cB": 0,
 		"ft": 8192,
 		"hM": 0,
 		"oA": 2,
 		"oAP": "/woocommerce/emails/customer-new-account.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/customer-note.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/customer-note.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/customer-processing-order.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/customer-processing-order.php",
 		"oF": 0
 		},
 	"/woocommerce/emails/customer-reset-password.php": {
@@ -2187,6 +2235,38 @@
 		"hM": 0,
 		"oA": 0,
 		"oAP": "/woocommerce/emails/email-styles.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/plain/customer-completed-order.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/plain/customer-completed-order.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/plain/customer-invoice.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/plain/customer-invoice.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/plain/customer-note.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/plain/customer-note.php",
+		"oF": 0
+		},
+	"/woocommerce/emails/plain/customer-processing-order.php": {
+		"cB": 0,
+		"ft": 8192,
+		"hM": 0,
+		"oA": 2,
+		"oAP": "/woocommerce/emails/plain/customer-processing-order.php",
 		"oF": 0
 		},
 	"/woocommerce/emails/plain/reseller-added.php": {
@@ -2650,6 +2730,7 @@
 			"flagValue": -1
 			}
 		},
+	"environmentVariablesString": "NODE_ENV:::production",
 	"esLintConfigFileHandlingType": 0,
 	"esLintECMAVersion": 7,
 	"esLintEnvironmentsMask": 1,
@@ -2751,6 +2832,10 @@
 			"optionString": "'all'"
 			},
 		"default-case": {
+			"active": 0,
+			"optionString": ""
+			},
+		"default-param-last": {
 			"active": 0,
 			"optionString": ""
 			},
@@ -3100,6 +3185,10 @@
 			},
 		"no-implied-eval": {
 			"active": 0,
+			"optionString": ""
+			},
+		"no-import-assign": {
+			"active": 1,
 			"optionString": ""
 			},
 		"no-inline-comments": {
@@ -3525,6 +3614,10 @@
 		"prefer-promise-reject-errors": {
 			"active": 0,
 			"optionString": "{'allowEmptyReject': false}"
+			},
+		"prefer-regex-literals": {
+			"active": 0,
+			"optionString": ""
 			},
 		"prefer-rest-params": {
 			"active": 0,
@@ -4134,7 +4227,6 @@
 		"autoOutputPathStyle": 1,
 		"createSourceMap": 1,
 		"enableJavascript": 0,
-		"ieCompatibility": 1,
 		"mathStyle": 0,
 		"outputStyle": 1,
 		"rewriteURLStyle": 0,
@@ -4274,6 +4366,9 @@
 	"npmTargetDependencyListType": 1,
 	"overrideExternalServerCSS": 0,
 	"previewPathAddition": "",
+	"rollupExternals": "",
+	"rollupReplacements": "process.env.NODE_ENV:::$NODE_ENV,,,ENVIRONMENT:::$NODE_ENV",
+	"rollupTreeshakingEnabled": 1,
 	"skippedFoldersString": "log, _logs, logs, _cache, cache, /storage/framework/sessions, node_modules",
 	"sourceFolderName": "source",
 	"susyVersion": 3,

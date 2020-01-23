@@ -77,13 +77,13 @@
 					echo $this->get_xml_url("/" . $language . "/", 1.0, false, "daily");
 					
 					//search
-					echo $this->get_xml_url("/" . $language . "/" . $this->$pathnamesByLanguage[$language]["search"], 0.5, false, "daily");
+					echo $this->get_xml_url("/" . $language . "/" . $this->pathnamesByLanguage[$language]["search"], 0.5, false, "daily");
 					
 					//login
-					echo $this->get_xml_url("/" . $language . "/" . $this->$pathnamesByLanguage[$language]["login"], 0.1, false, "monthly");
+					echo $this->get_xml_url("/" . $language . "/" . $this->pathnamesByLanguage[$language]["login"], 0.1, false, "monthly");
 					
 					//login
-					echo $this->get_xml_url("/" . $language . "/" . $this->$pathnamesByLanguage[$language]["cart"], 0, false, "always");
+					echo $this->get_xml_url("/" . $language . "/" . $this->pathnamesByLanguage[$language]["cart"], 0, false, "always");
 					
 					$products = new WP_Query(
 						array(
@@ -97,7 +97,7 @@
 						echo $this->get_xml_url(
 							"/" . $language . "/" . $this->pathnamesByLanguage[$language]["product"] . "/" . $product->post_name,
 							0.9,
-							$product->post_modified,
+							date('c', strtotime($product->post_modified)),
 							"weekly"
 						);
 					}
@@ -114,7 +114,7 @@
 					
 					foreach($productCategories as $productCategory){
 						echo $this->get_xml_url(
-							"/" . $language . "/" . $this->pathnamesByLanguage[$language]["productCategory"] . "/" . $productCategory->slug,
+							"/" . $language . "/" . $this->pathnamesByLanguage[$language]["productCategory"] . "/" . $productCategory->slug . "/1",
 							0.8,
 							false,
 							"weekly"
@@ -135,7 +135,7 @@
 						echo $this->get_xml_url(
 							"/" . $language . "/" . $this->pathnamesByLanguage[$language]["page"] . "/" . $page->post_name,
 							0.9,
-							$page->post_modified,
+							date('c', strtotime($page->post_modified)),
 							"weekly"
 						);
 					}
@@ -154,7 +154,7 @@
 						echo $this->get_xml_url(
 							"/" . $language . "/" . $this->pathnamesByLanguage[$language]["post"] . "/" . $post->post_name,
 							0.9,
-							$post->post_modified,
+							date('c', strtotime($post->post_modified)),
 							"weekly"
 						);
 					}
@@ -175,9 +175,9 @@
 			
 				$xml .= "<loc>" . $this->baseUrl . $url . "</loc>";
 				
-				if($lastmod !== false){
+				/*if($lastmod !== false){
 					$xml .= "<lastmod>" . $lastmod . "</lastmod>";
-				}
+				}*/
 				
 				if($changefreq !== false){
 					$xml .= "<changefreq>" . $changefreq . "</changefreq>";

@@ -5,7 +5,7 @@ msgstr ""
 "PO-Revision-Date: 2019-11-17 19:31+0100\n"
 "Last-Translator: Nico Hauser <me@tyratox.ch>\n"
 "Language-Team: \n"
-"Language: de_CH\n"
+"Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,61 +25,61 @@ msgstr ""
 #: functions/admin-menu.php:45 functions/admin-menu.php:46
 #: functions/admin-menu.php:114
 msgid "Import Products from Excel"
-msgstr "Produkte von Excel importieren"
+msgstr "Importation de produits d'Excel"
 
 #: functions/admin-menu.php:54 functions/admin-menu.php:55
 #: functions/admin-menu.php:140
 msgid "Import Resellers from Excel"
-msgstr "Importiere Wiederverkäufer von Excel"
+msgstr "Importation de revendeur d'Excel"
 
 #: functions/admin-menu.php:62 functions/admin-menu.php:63
 #: functions/admin-menu.php:167
 msgid "Refresh Taxonomy Count"
-msgstr "Taxonomien-Anzahl neu berechnen"
+msgstr ""
 
 #: functions/admin-menu.php:72 functions/admin-menu.php:73
 msgid "Global Attribute Settings"
-msgstr "Globale Eigenchaftseinstellungen"
+msgstr ""
 
 #: functions/admin-menu.php:78 functions/admin-menu.php:79
 msgid "Footer Settings"
-msgstr "Footer Einstellungen"
+msgstr ""
 
 #: functions/admin-menu.php:84 functions/admin-menu.php:85
 msgid "Discount Settings"
-msgstr "Rabatteinstellungen"
+msgstr ""
 
 #: functions/admin-menu.php:117 functions/admin-menu.php:143
 msgid "Drop your excel file here"
-msgstr "Platzieren Sie Ihre Excel-Datei hier"
+msgstr ""
 
 #: functions/admin-menu.php:180
 msgid "Do It!"
-msgstr "Mach es!"
+msgstr ""
 
 #: functions/admin-menu.php:673
 msgid "New product was successfully imported!"
-msgstr "Neues Produkt wurde erfolgreich importiert!"
+msgstr ""
 
 #: functions/admin-menu.php:675
 msgid "Existing product was successfully updated!"
-msgstr "Bestehendes Produkt wurde erfolgreich aktualisiert!"
+msgstr ""
 
 #: functions/admin-menu.php:680 functions/admin-menu.php:795
 msgid "This operation can only be performed by admins!"
-msgstr "Diese Operation kann nur von Admins durchgeführt werden!"
+msgstr ""
 
 #: functions/admin-menu.php:789
 msgid "New reseller was successfully imported!"
-msgstr "Neue Wiederverkäufer wurden erfolgreich importiert!"
+msgstr ""
 
 #: functions/admin-menu.php:791
 msgid "Existing reseller was successfully updated!"
-msgstr "Bestehender Wiederverkäufer wurde erfolgreich aktualisiert!"
+msgstr ""
 
 #: functions/admin-menu.php:815
 msgid "Refreshed successfully!"
-msgstr "Aktualisierung erfolgreich!"
+msgstr ""
 
 #: functions/email.php:18
 msgid ""
@@ -96,18 +96,17 @@ msgid ""
 "All at Hauser Feuerschutz AG\n"
 "https://shop.feuerschutz.ch"
 msgstr ""
-"Hallo ###USERNAME###, \n"
+"Bonjour ###USERNAME###,\n"
 "\n"
-"Diese Nachricht bestätigt die Änderung Ihres Passworts im Shop der Hauser "
-"Feuerschutz AG. \n"
+"Cet avis confirme que votre mot de passe a été modifié.\n"
 "\n"
-"Wenn Sie keine Änderung vorgenommen haben, kontaktieren Sie uns bitte über "
-"info@feuerschutz.ch. \n"
+"Si vous n’avez pas changé votre mot de passe, vous veuillez nous contacter à "
+"info@feuerschutz.ch\n"
 "\n"
-"Diese E-Mail wurde an ###EMAIL### gesendet. \n"
+"Cet email a été envoyé à ###EMAIL###.\n"
 "\n"
-"Viele Grüsse, \n"
-"Ihre Hauser Feuerschutz AG \n"
+"Cordialement,\n"
+"Tous à Hauser Feuerschutz AG\n"
 "https://shop.feuerschutz.ch"
 
 #: functions/email.php:42
@@ -125,250 +124,248 @@ msgid ""
 "All at Hauser Feuerschutz AG\n"
 "https://shop.feuerschutz.ch"
 msgstr ""
-"Hallo ###USERNAME###, \n"
+"Bonjour ###USERNAME###,\n"
 "\n"
-"Diese Nachricht bestätigt die Änderung Ihrer E-Mail Adresse zu "
-"###NEW_EMAIL###. \n"
+"Cet avis confirme que votre adresse de courriel a été changée en "
+"###NEW_EMAIL###.\n"
 "\n"
-"Wenn Sie keine Änderung vorgenommen haben, kontaktieren Sie uns bitte über "
-"info@feuerschutz.ch. \n"
+"Si vous n’avez pas modifié votre courriel, vous veuillez nous contacter à "
+"info@feuerschutz.ch.\n"
 "\n"
-"Diese E-Mail wurde an ###EMAIL### gesendet. \n"
+"Cet email a été envoyé à ###EMAIL###.\n"
 "\n"
-"Viele Grüsse, \n"
-"Ihre Hauser Feuerschutz AG \n"
+"Cordialement,\n"
+"Tous à Hauser Feuerschutz AG\n"
 "https://shop.feuerschutz.ch"
 
 #: functions/emails/new-reseller.php:8
 msgid "New Reseller Added"
-msgstr "Neuer Wiederverkäufer hinzugefügt"
+msgstr ""
 
 #: functions/emails/new-reseller.php:9
 msgid ""
 "\"New Reseller Added\" mails are being sent to the new resellers added "
 "through the excel import."
 msgstr ""
-"„Neuer Wiederverkäufer hinzugefügt“ Mails werden den neuen Wiederverkäufer "
-"gesendet, die über den Excel Import hinzugefügt werden."
 
 #: functions/emails/new-reseller.php:11
 msgid "Welcome to our new shop"
-msgstr "Willkommen bei unserem neuen Online-Shop"
+msgstr "Bienvenue sur notre nouveau site web"
 
 #: functions/emails/new-reseller.php:12
 msgid "New Online Shop"
-msgstr "Neuer Online-Shop"
+msgstr "Nouvelle boutique en ligne"
 
 #: functions/rest.php:87
 msgid "The lowest price for this product."
-msgstr "Der niedrigste Preis für dieses Produkt."
+msgstr ""
 
 #: functions/rest.php:98
 msgid "The mininum order quantity for this product."
-msgstr "Die Mindestbestellmenge dieses Produkts."
+msgstr ""
 
 #: functions/rest.php:109
 msgid "A short description"
-msgstr "Beschreibung lesen"
+msgstr ""
 
 #: functions/rest.php:201
 msgid "The thumbnail id of the term."
-msgstr "Die Thumbnail id der Kategorie."
+msgstr ""
 
 #: functions/rest.php:212
 msgid "The seo description of the term."
-msgstr "Die Seo Beschreibung dieser Kategorie."
+msgstr ""
 
 #: functions/rest.php:223 functions/rest.php:253
 msgid "An excerpt of content."
-msgstr "Eine Zusammenfassung des Inhaltes."
+msgstr ""
 
 #: functions/rest.php:1235
 msgid "Products"
-msgstr "Produkte"
+msgstr ""
 
 #: functions/rest.php:1240
 msgid "Product Variations"
-msgstr "Produktvariationen"
+msgstr ""
 
 #: functions/rest.php:1264
 msgid "Categories"
-msgstr "Kategorien"
+msgstr ""
 
 #: functions/setup.php:37
 msgid "Downloads"
-msgstr "Downloads"
+msgstr ""
 
 #: functions/setup.php:38
 msgid "Download"
-msgstr "Download"
+msgstr ""
 
 #: functions/setup.php:53
 msgctxt "Taxonomy General Name"
 msgid "Discount Groups"
-msgstr "Rabatt-Gruppen"
+msgstr ""
 
 #: functions/setup.php:54
 msgctxt "Taxonomy Singular Name"
 msgid "Discount Group"
-msgstr "Rabatt-Gruppe"
+msgstr ""
 
 #: functions/setup.php:55
 msgid "Discount Groups"
-msgstr "Rabatt-Gruppen"
+msgstr ""
 
 #: functions/setup.php:56
 msgid "All Groups"
-msgstr "Alle Gruppen"
+msgstr ""
 
 #: functions/setup.php:57
 msgid "Parent Group"
-msgstr "Übergeordnete Gruppe"
+msgstr ""
 
 #: functions/setup.php:58
 msgid "Parent Group:"
-msgstr "Übergeordnete Gruppe:"
+msgstr ""
 
 #: functions/setup.php:59
 msgid "New Group Name"
-msgstr "Neuer Gruppenname"
+msgstr ""
 
 #: functions/setup.php:60
 msgid "Add New Group"
-msgstr "Füge neue Gruppe hinzu"
+msgstr ""
 
 #: functions/setup.php:61
 msgid "Edit Group"
-msgstr "Bearbeite Gruppe"
+msgstr ""
 
 #: functions/setup.php:62
 msgid "Update Group"
-msgstr "Aktualisiere Gruppe"
+msgstr ""
 
 #: functions/setup.php:63
 msgid "View Group"
-msgstr "Betrachte Gruppe"
+msgstr ""
 
 #: functions/setup.php:64
 msgid "Separate groups with commas"
-msgstr "Trenne Gruppen mit Kommas"
+msgstr ""
 
 #: functions/setup.php:65
 msgid "Add or remove groups"
-msgstr "Füge neue Gruppen hinzu oder lösche welche"
+msgstr ""
 
 #: functions/setup.php:66
 msgid "Choose from the most used"
-msgstr "Wähle von den meist verwendeten"
+msgstr ""
 
 #: functions/setup.php:67
 msgid "Popular Groups"
-msgstr "Beliebte Gruppen"
+msgstr ""
 
 #: functions/setup.php:68
 msgid "Search Discount Groups"
-msgstr "Suche nach Rabatt-Gruppen"
+msgstr ""
 
 #: functions/setup.php:69
 msgid "Not Found"
-msgstr "Nichts gefunden"
+msgstr ""
 
 #: functions/setup.php:70
 msgid "No Groups"
-msgstr "Keine Gruppen"
+msgstr ""
 
 #: functions/setup.php:71
 msgid "Group list"
-msgstr "Gruppenliste"
+msgstr ""
 
 #: functions/setup.php:72
 msgid "Groups list navigation"
-msgstr "Gruppenliste Navigation"
+msgstr ""
 
 #: functions/setup.php:91 functions/setup.php:93
 msgid "Download Categories"
-msgstr "Download Kategorien"
+msgstr ""
 
 #: functions/setup.php:94
 msgid "Download Category"
-msgstr "Download Kategorie"
+msgstr ""
 
 #: functions/woocommerce-discount.php:346
 msgid "Minimum purchase quantity"
-msgstr "Mindesbestellmenge"
+msgstr ""
 
 #: functions/woocommerce-discount.php:348
 msgid "Enter the desired minimum purchase quantity."
-msgstr "Geben Sie die Mindesbestellmenge an."
+msgstr ""
 
 #: functions/woocommerce-discount.php:375
 msgid "Bulk Discount"
-msgstr "Mengenrabatt"
+msgstr "Rabais sur les achats en gros"
 
 #: functions/woocommerce-discount.php:378
 msgid "Min. Amount"
-msgstr "Anzahl (ab)"
+msgstr ""
 
 #: functions/woocommerce-discount.php:378
 msgid "Price per unit"
-msgstr "Stückpreis"
+msgstr ""
 
 #: functions/woocommerce-discount.php:378
 msgid "Actions"
-msgstr "Aktionen"
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:8
 #: functions/woocommerce-invoice-gateway.php:56
 msgid "Invoice"
-msgstr "Rechnung"
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:9
 msgid "Just an ordinary invoice. That's it! Simple as that."
-msgstr "Eine simple Rechnung, nichts mehr."
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:47
 msgid "Enable/Disable"
-msgstr "Aktivieren/Deaktivieren"
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:49
 msgid "Enable Invoice Payment"
-msgstr "Erlaube Rechnungen als Zahlungsmethode"
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:53
 msgid "Title"
-msgstr "Titel"
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:55
 msgid "This controls the title which the user sees during checkout."
-msgstr "Dies ist der Titel, der dem Benutzer bei der Kasse angezeigt wird."
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:60
 msgid "Message"
-msgstr "Nachricht"
+msgstr ""
 
 #: functions/woocommerce-invoice-gateway.php:62
 msgid "A message show to users while checking out."
-msgstr "Eine Nachricht die Benutzer beim Bezahlen angezeigt wird."
+msgstr ""
 
 #: functions/woocommerce.php:79 functions/woocommerce.php:89
 msgid "Post office box"
-msgstr "Postfach"
+msgstr ""
 
 #: functions/woocommerce.php:148
 msgid "Subtotal with shipping:"
-msgstr "Zwischensumme mit Versand:"
+msgstr "Sous-total avec frais d’expédition"
 
 #: functions/woocommerce.php:292
 msgid "Invalid state!"
-msgstr "Ungültiger Kanton!"
+msgstr ""
 
 #: functions/woocommerce.php:298
 msgid "Invalid phone number!"
-msgstr "Ungültige Telephonnummer!"
+msgstr ""
 
 #: woocommerce/emails/customer-invoice.php:30
 msgid "Dear customer,"
-msgstr "Sehr geehrter Kunde,"
+msgstr "Cher client"
 
 #: woocommerce/emails/customer-invoice.php:38
 #, php-format
@@ -376,30 +373,30 @@ msgid ""
 "An order has been created for you on %1$s. Your invoice is below, with a "
 "link to make payment when you’re ready: %2$s"
 msgstr ""
-"Auf %1$s wurde eine Bestellung für Sie erstellt. Nachstehend finden Sie Ihre "
-"Rechnung mit einem Link zur Zahlung: %2$s"
+"Un ordre a été créé pour vous sur %1$s. Votre facture est ci-dessous, avec "
+"un lien pour effectuer le paiement quand vous êtes prêt : %2$s"
 
 #: woocommerce/emails/customer-new-account.php:29
 msgid "the shop of the Hauser Feuerschutz AG"
-msgstr "dem Shop der Hauser Feuerschutz AG"
+msgstr "la boutique de la Hauser Feuerschutz AG"
 
 #: woocommerce/emails/email-order-details.php:26
 #: woocommerce/emails/email-order-details.php:28
 #, php-format
 msgid "Order #%s"
-msgstr "Bestellung #%s"
+msgstr "Ordre #%s"
 
 #: woocommerce/emails/email-order-details.php:34
 msgid "Product"
-msgstr "Produkt"
+msgstr "Produits"
 
 #: woocommerce/emails/email-order-details.php:35
 msgid "Quantity"
-msgstr "Anzahl"
+msgstr "Quantité"
 
 #: woocommerce/emails/email-order-details.php:36
 msgid "Price"
-msgstr "Preis"
+msgstr "Prix"
 
 #: woocommerce/emails/plain/reseller-added.php:9
 #: woocommerce/emails/reseller-added.php:11
@@ -407,24 +404,24 @@ msgid ""
 "Your reseller account has been created in our new online shop. In order to "
 "use it, the password has to be reset for the following account:"
 msgstr ""
-"Ihr Wiederverkäufer-Account wurde in unserem neuen Online-Shop erstellt. Um "
-"ihn benutzen zu können, muss das Passwort für das folgende Benutzerkonto "
-"zurückgesetzt werden:"
+"Votre compte revendeur a été créé dans notre nouvelle boutique en ligne. "
+"Pour l’utiliser, le mot de passe doit être réinitialisé pour le compte "
+"suivant :"
 
 #: woocommerce/emails/plain/reseller-added.php:11
 #: woocommerce/emails/reseller-added.php:12
 #, php-format
 msgid "Username: %s"
-msgstr "Benutzername: %s"
+msgstr "Nom d’utilisateur: %s"
 
 #: woocommerce/emails/plain/reseller-added.php:12
 #: woocommerce/emails/reseller-added.php:13
 msgid "To reset your password, visit the following address:"
-msgstr "Um Ihr Passwort zurückzusetzen, besuchen Sie folgende Adresse:"
+msgstr "Pour réinitialiser votre mot de passe, visitez l’adresse suivante :"
 
 #: woocommerce/emails/reseller-added.php:16
 msgid "Click here to reset your password"
-msgstr "Klicken Sie hier um das Passwort zurückzusetzen"
+msgstr "Cliquez ici pour réinitialiser votre mot de passe"
 
 #~ msgid "Additional line above"
 #~ msgstr "Zusatzzeile oben"
