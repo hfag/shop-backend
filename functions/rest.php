@@ -174,6 +174,21 @@
 				return $data;
 			}, 100, 3);
 			
+			add_filter('rest_prepare_attachment', function($data, $post, $context){
+				
+				unset($data->data['media_details']['sizes']['woocommerce_thumbnail']);
+				unset($data->data['media_details']['sizes']['woocommerce_single']);
+				unset($data->data['media_details']['sizes']['woocommerce_gallery_thumbnail']);
+				unset($data->data['media_details']['sizes']['shop_single']);
+				unset($data->data['media_details']['sizes']['shop_thumbnail']);
+				unset($data->data['media_details']['sizes']['shop_catalog']);
+				unset($data->data['media_details']['sizes']['search-thumbnail']);
+				
+				//unset($data->data["sizes"]);
+				
+				return $data;
+			}, 100, 3);
+			
 			add_filter('rest_prepare_product_cat', function($data, $post, $context){
 				
 				unset($data->data["link"]);
