@@ -7,6 +7,6 @@
   "license": "UNLICENSED",
   "repository": {},
   "dependencies": {
-    "xlsx": "^0.15.0"
+    "xlsx": "^0.17.0"
   }
 }
